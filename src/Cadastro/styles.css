@@ -17,7 +17,7 @@ body {
   align-items: center;
   justify-content: center;
 }
-.card-login {
+.card-cadastro {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@ body {
   height: 100%;
 }
 
-.login {
+.cadastro {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,7 +47,7 @@ body {
   margin: 0 auto;
 }
 
-.login label {
+.cadastro label {
   width: 260px;
   border-bottom: 1px solid #4c4c4c;
   padding-left: 1rem;
@@ -57,19 +57,28 @@ body {
   line-height: 15px;
 }
 
-.login label:first-child {
+.cadastro label:first-child {
   margin-bottom: 40px;
 }
-.login label input {
+.cadastro label:nth-child(2) {
+  margin-bottom: 40px;
+}
+
+.senha {
+  margin-bottom: 3rem;
+}
+
+.cadastro label input {
   margin-top: 21px;
   width: 150px;
   margin-bottom: 14px;
 }
-.login label > button {/*COMO ASSIM BOTAO DENTRO DO INPUT?*/
+.cadastro label > button {
+  /*COMO ASSIM BOTAO DENTRO DO INPUT?*/
   margin: 0 auto;
 }
 
-.login a {
+.cadastro a {
   align-self: flex-end;
   margin-bottom: 3rem;
   margin-top: 1rem;
@@ -78,13 +87,12 @@ body {
   color: #263238;
 }
 
-.login > button {
+.cadastro > button {
   align-self: center;
   background: rgba(218, 1, 117, 0.35);
   border-radius: 1.5rem;
   margin-bottom: 4.5rem;
 
-  max-width: 166px;
   padding: 11px 60px;
   color: white;
 }

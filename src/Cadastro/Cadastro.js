@@ -4,14 +4,19 @@ import "./styles.css";
 import academyLogo from "../assets/academy-logo.svg";
 import senhaOffIcon from "../assets/senha-off.svg";
 
-const Login = () => {
+const Cadastro = () => {
   return (
     <>
-      <div className="card-login">
+      <div className="card-cadastro">
         <div className="logo-container">
           <img src={academyLogo} alt="logo-academy" />
         </div>
-        <form className="login" method="post">
+        <form className="cadastro" method="post">
+          <label htmlFor="name">
+            Nome:
+            <br />
+            <input name="name" id="name" type="name" placeholder="Seu nome" />
+          </label>
           <label htmlFor="user">
             E-mail:
             <br />
@@ -23,7 +28,7 @@ const Login = () => {
             />
           </label>
           <br />
-          <label htmlFor="senha">
+          <label className="senha" htmlFor="senha">
             Senha:
             <br />
             <input
@@ -38,15 +43,14 @@ const Login = () => {
             <br />
           </label>
           <br />
-          <a href="/">Esqueci minha senha</a>
-          <button>Entrar</button>
+          <button>Criar conta</button>
         </form>
       </div>
       <p>
-        Não tem uma conta? <a href="/">Cadastre-se!</a>
+        Já possui uma conta? <a href="/">Acesse agora!</a>
       </p>
     </>
   );
 };
 
-export default Login;
+export default Cadastro;
