@@ -8,7 +8,7 @@ const Login = () => {
   return (
     <>
       <div className="card-login">
-        <div className="logo-container">
+        <div className="logo-container-login">
           <img src={academyLogo} alt="logo-academy" />
         </div>
         <form className="login" method="post">
@@ -42,7 +42,7 @@ const Login = () => {
           <button>Entrar</button>
         </form>
       </div>
-      <p>
+      <p className="sem-conta">
         Não tem uma conta? <a href="/">Cadastre-se!</a>
       </p>
     </>

@@ -5,7 +5,7 @@
   border: 0;
   padding: 0;
   box-sizing: border-box;
-  font-style: "Montserrat";
+  font-family: "Montserrat";
 }
 button {
   cursor: pointer;
@@ -29,12 +29,12 @@ body {
   box-shadow: 0px 0px 2rem rgba(0, 0, 0, 0.1);
   border-radius: 1rem;
 }
-.logo-container {
+.logo-container-login {
   align-self: center;
   margin-top: 3rem;
   margin-bottom: 3.5rem;
 }
-.logo-container img {
+.logo-container-login img {
   width: 100%;
   height: 100%;
 }
@@ -60,13 +60,19 @@ body {
 .login label:first-child {
   margin-bottom: 40px;
 }
+
+.login label:nth-child(2) {
+  display: flex;
+  justify-content: space-between;
+}
 .login label input {
   margin-top: 21px;
   width: 150px;
   margin-bottom: 14px;
 }
-.login label > button {/*COMO ASSIM BOTAO DENTRO DO INPUT?*/
-  margin: 0 auto;
+.login label > button {
+  /*COMO ASSIM BOTAO DENTRO DO INPUT?*/
+  background-color: white;
 }
 
 .login a {
@@ -89,7 +95,7 @@ body {
   color: white;
 }
 
-p {
+.sem-conta {
   margin-top: 2rem;
   text-align: center;
   font-size: 14px;
@@ -98,7 +104,7 @@ p {
   letter-spacing: 0.005em;
 }
 
-p > a {
+.sem-conta > a {
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.005em;
