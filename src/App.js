@@ -12,7 +12,7 @@ function App() {
         <Cadastro />
         <RecuperarSenha />
         <Login />
-		
+        <Perfil />
       </div>
 
       {/* <main>
