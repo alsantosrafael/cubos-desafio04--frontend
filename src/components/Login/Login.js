@@ -1,8 +1,8 @@
 import React from "react";
 import "./styles.css";
 
-import academyLogo from "../assets/academy-logo.svg";
-import senhaOffIcon from "../assets/senha-off.svg";
+import academyLogo from "../../assets/academy-logo.svg";
+import senhaOffIcon from "../../assets/senha-off.svg";
 
 const Login = () => {
   return (

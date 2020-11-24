@@ -1,10 +1,10 @@
 import React from "react";
 import "./styles.css";
 
-import moneyIcon from "../assets/money.svg";
-import logoIcon from "../assets/Logo.svg";
-import homeIcon from "../assets/home.svg";
-import usersIcon from "../assets/users.svg";
+import moneyIcon from "../../assets/money.svg";
+import logoIcon from "../../assets/Logo.svg";
+import homeIcon from "../../assets/home.svg";
+import usersIcon from "../../assets/users.svg";
 
 const Menu = () => {
   return (

@@ -1,7 +1,7 @@
 import React from "react";
-import profileIcon from "../assets/profile.svg";
-import cifraoIcon from "../assets/cifrao.svg";
-import logoutIcon from "../assets/logout.svg";
+import profileIcon from "../../assets/profile.svg";
+import cifraoIcon from "../../assets/cifrao.svg";
+import logoutIcon from "../../assets/logout.svg";
 import "./styles.css";
 
 const Perfil = () => {

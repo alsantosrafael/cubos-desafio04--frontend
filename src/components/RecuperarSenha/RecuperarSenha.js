@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.css";
 
-import academyLogo from "../assets/academy-logo.svg";
+import academyLogo from "../../assets/academy-logo.svg";
 
 const RecuperarSenha = () => {
   return (

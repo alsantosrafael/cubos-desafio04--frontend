@@ -1,8 +1,8 @@
-import Login from "./Login/Login";
-import Cadastro from "./Cadastro/Cadastro";
-import Menu from "./Menu/Menu";
-import Perfil from "./Perfil/Perfil";
-import RecuperarSenha from "./RecuperarSenha/RecuperarSenha";
+import Login from "./components/Login/Login";
+import Cadastro from "./components/Cadastro/Cadastro";
+import Menu from "./components/Menu/Menu";
+import Perfil from "./components/Perfil/Perfil";
+import RecuperarSenha from "./components/RecuperarSenha/RecuperarSenha";
 
 function App() {
   return (
