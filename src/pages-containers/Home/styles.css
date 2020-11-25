@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Montserrat";
+}
+
+body {
+  min-height: 100vh;
+  background: #f7f7f7;
+}
+
+.home {
+  display: flex;
+}
+.content-home {
+  width: 100%;
+  height: 100%;
+}
+
+.filtro {
+  margin-top: 4rem;
+  width: 100%;
+  padding: 0 170px 0 72px;
+}
+.filtro ul {
+  display: flex;
+  max-width: 859px;
+  border-bottom: 1px solid #263238;
+}
+
+.filtro ul li {
+  font-size: 1rem;
+  line-height: 15px;
+  color: #667e87;
+  margin-bottom: 1rem;
+}
+
+.filtro ul li + li {
+  margin-left: 3.5rem;
+}
+
+.cards {
+  margin-top: 41px;
+  display: flex;
+
+  padding: 0 170px 0 72px;
+  /* width: 410px; */
+  width: 100%;
+}
+.card-clientes {
+  margin-right: 2.5rem;
+}
+.card-clientes,
+.card-cobrancas {
+  width: 410px;
+  background: #ffffff;
+  box-shadow: 0px 4px 8px 2px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+}
+
+.card-clientes header,
+.card-cobrancas header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 0;
+  background: #374952;
+  border-radius: 16px 16px 0px 0px;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 15px;
+  color: white;
+  margin-bottom: 2.5rem;
+}
+
+.card-clientes header > span,
+.card-cobrancas header > span {
+  margin-right: 1rem;
+}
+
+.em-dia,
+.inadimplentes,
+.previstas,
+.vencidas,
+.pagas {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 16px;
+  width: 266px;
+  margin: 0 auto;
+  background: #ffffff;
+
+  /* semantic/sucess */
+  border: 2px solid #4ec06e;
+  box-sizing: border-box;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.inadimplentes {
+  border: 2px solid #ff4d4d;
+}
+
+.previstas {
+  border: 2px solid #5197b5;
+}
+.vencidas {
+  border: 2px solid #ff4d4d;
+}
+
+.em-dia > h5,
+.inadimplentes > h5,
+.previstas > h5,
+.vencidas > h5,
+.pagas > h5 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  letter-spacing: 0.005em;
+
+  color: #4ec06e;
+}
+
+.inadimplentes > h5 {
+  color: #ff4d4d;
+}
+.previstas > h5 {
+  color: #5197b5;
+}
+.vencidas > h5 {
+  color: #ff4d4d;
+}
+
+.em-dia > h3,
+.inadimplentes > h3,
+.previstas > h3,
+.vencidas > h3,
+.pagas > h3 {
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 44px;
+
+  /* identical to box height */
+  text-align: right;
+
+  /* semantic/sucess */
+  color: #4ec06e;
+}
+
+.inadimplentes > h3 {
+  color: #ff4d4d;
+}
+
+.previstas > h3 {
+  color: #5197b5;
+}
+.vencidas > h3 {
+  color: #ff4d4d;
+}

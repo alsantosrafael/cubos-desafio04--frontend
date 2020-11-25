@@ -6,22 +6,24 @@ import "./styles.css";
 
 const Perfil = () => {
   return (
-    <div className="profile">
-      <span>
-        <img src={profileIcon} alt="" />
-      </span>
-      <section className="content">
-        <div className="saldo">
-          <span>
-            <img src={cifraoIcon} alt="cifrão" />
-            Saldo em Conta
-          </span>
-          <h4>R$ 0,00</h4>
-        </div>
-        <button className="logout">
-          <img src={logoutIcon} alt="" /> Deslogar
-        </button>
-      </section>
+    <div className="corpo">
+      <div className="profile">
+        <span>
+          <img src={profileIcon} alt="" />
+        </span>
+        <section className="content">
+          <div className="saldo">
+            <span>
+              <img src={cifraoIcon} alt="cifrão" />
+              Saldo em Conta
+            </span>
+            <h4>R$ 0,00</h4>
+          </div>
+          <button className="logout">
+            <img src={logoutIcon} alt="" /> Deslogar
+          </button>
+        </section>
+      </div>
     </div>
   );
 };

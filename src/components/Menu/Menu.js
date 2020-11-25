@@ -15,16 +15,22 @@ const Menu = () => {
       <nav>
         <ul>
           <li>
-            <img src={homeIcon} alt="home" />
-            Home
+            <a href="/">
+              <img src={homeIcon} alt="home" />
+              Home
+            </a>
           </li>
           <li>
-            <img src={moneyIcon} alt="money" />
-            Cobranças
+            <a href="/">
+              <img src={moneyIcon} alt="money" />
+              Cobranças
+            </a>
           </li>
           <li>
-            <img src={usersIcon} alt="users" />
-            Clientes
+            <a href="/">
+              <img src={usersIcon} alt="users" />
+              Clientes
+            </a>
           </li>
         </ul>
       </nav>

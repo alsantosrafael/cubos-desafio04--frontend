@@ -15,14 +15,12 @@ body {
 }
 
 .menu {
-  height: 100%;
+  width: 264px;
   background-color: #263238;
   border: 1px solid white;
-  display: flex;
-  flex-direction: column;
 }
 .logo {
-  max-width: 264px;
+  width: 264px;
   margin: 0 auto;
   width: 100%;
   justify-content: flex-start;
@@ -39,15 +37,14 @@ body {
   background: #da0175;
   border-radius: 20px;
   padding: 11px 60px;
-  max-width: 226px;
+  align-self: center;
+  width: 226px;
   margin: 0 auto;
   color: white;
 
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-
-  text-align: center;
 
   color: #f7f7f7;
 }
@@ -60,13 +57,24 @@ body {
 .menu nav ul li {
   max-width: 264px;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 
   padding: 1rem 3rem;
   color: white;
   text-transform: uppercase;
+}
+.menu nav ul li:hover {
+  background: #374952;
+  transition: 400ms;
+}
+
+.menu nav ul li a {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  text-decoration: none;
+  color: white;
 }
 
 .menu nav ul li img {
