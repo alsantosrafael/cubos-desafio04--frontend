@@ -1,10 +1,11 @@
 import Home from "./pages-containers/Home/Home";
-
+import ConfiraEmail from "./components/ConfiraEmail/ConfiraEmail";
 function App() {
   return (
     <>
       <div className="App">
-        <Home />
+        {/* <Home /> */}
+        <ConfiraEmail />
       </div>
 
       {/* <main>
