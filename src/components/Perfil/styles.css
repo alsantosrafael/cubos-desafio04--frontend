@@ -11,11 +11,14 @@ li {
 }
 
 body {
+  display: flex;
   min-height: 100vh;
 }
 .corpo {
+  flex: 1;
   display: flex;
-  height: 228px;
+  max-height: 228px;
+  width: 100%;
 }
 .profile {
   display: flex;

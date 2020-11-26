@@ -10,14 +10,15 @@ const Cobrancas = () => {
       <Menu />
       <main className="content-cobrancas">
         <Perfil />
+
         <div className="busca">
-          <input type="text" />
+          <input type="text" placeholder="Procurar por Nome, E-mail ou CPF" />
           <button>
             <img src={lupaIcon} alt="buscar" />
             Buscar
           </button>
-          <section className="lista-cobrancas"></section>
         </div>
+        <section className="lista-cobrancas"></section>
       </main>
     </div>
   );

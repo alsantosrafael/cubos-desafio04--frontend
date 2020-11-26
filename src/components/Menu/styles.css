@@ -12,10 +12,12 @@ li {
 
 body {
   min-height: 100vh;
+  display: flex;
 }
 
 .menu {
-  width: 264px;
+  flex: 1;
+  max-width: 264px;
   background-color: #263238;
   border: 1px solid white;
 }
