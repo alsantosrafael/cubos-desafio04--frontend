@@ -1,0 +1,96 @@
+.criar-cobrancas {
+  flex: 1;
+  display: flex;
+
+  /* width: 1100px; */
+  height: 800px;
+  background: #f7f7f7;
+}
+.content-criar-cobrancas {
+  flex: 1;
+  margin-left: 264px;
+  width: 100%;
+}
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 64px 70px;
+  background-color: white;
+}
+
+.cadastro-cobranca {
+  max-width: 512px;
+  margin: 0 auto;
+}
+
+.cadastro-cobranca > label {
+  color: #374952;
+  font-size: 16px;
+  line-height: 15px;
+  font-weight: 600;
+  margin-left: 0.25rem;
+}
+
+.cadastro-cobranca > label > p {
+  font-size: 12px;
+  line-height: 15px;
+
+  /* identical to box height */
+  letter-spacing: 0.25px;
+  font-weight: 400;
+  margin-left: 0.25rem;
+
+  /* neutral/gray/mid */
+  color: #868686;
+}
+
+.cadastro-cobranca input,
+select,
+textarea {
+  border: 1px solid #374952;
+  box-sizing: border-box;
+  border-radius: 8px;
+  width: 100%;
+  padding: 12px 14px;
+  background-color: white;
+}
+
+.cadastro-cobranca > label {
+  margin-top: 2rem;
+}
+
+#vencimento {
+  background: url(../../assets/calendar.svg) no-repeat scroll;
+  background-color: white;
+}
+
+.buttons-container {
+  display: flex;
+}
+.buttons-container button {
+  padding: 11px 60px;
+  border-radius: 1rem;
+  font-weight: 600;
+}
+.buttons-container button:first-child {
+  margin-right: 1rem;
+}
+
+.cancelar {
+  border: 2px solid #da0175;
+  color: #da0175;
+  background: #ffffff;
+}
+
+.criar-cobranca {
+  /* background: rgba(218, 1, 117, 0.35); */
+  background: #da0175;
+
+  color: #ffffff;
+  border-radius: 20px;
+}
+
+.criar-cobranca:disabled {
+  background: rgba(218, 1, 117, 0.35);
+}

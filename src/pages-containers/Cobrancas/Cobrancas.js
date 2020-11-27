@@ -70,6 +70,24 @@ const Cobrancas = () => {
               </tbody>
             </table>
           </section>
+          {/* <div className="container-buttons">
+            <button className="back-page">
+              <img src={BackIcon} alt="Página anterior" />
+            </button>
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+            <button>6</button>
+            <button>7</button>
+            <button>8</button>
+            <button>9</button>
+            <button>10</button>
+            <button className="next-page">
+              <img src={NextIcon} alt="Próxima página" />
+            </button>
+          </div> */}
         </div>
       </main>
     </div>
