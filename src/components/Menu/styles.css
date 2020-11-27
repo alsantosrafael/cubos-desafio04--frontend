@@ -1,4 +1,4 @@
-* {
+/* * {
   margin: 0;
   border: 0;
   padding: 0;
@@ -13,11 +13,14 @@ li {
 body {
   min-height: 100vh;
   display: flex;
-}
+} */
 
 .menu {
-  flex: 1;
-  max-width: 264px;
+  display: flex;
+  position: fixed;
+  height: 100vh;
+  flex-direction: column;
+  width: 264px;
   background-color: #263238;
   border: 1px solid white;
 }
@@ -32,6 +35,7 @@ body {
 }
 .menu nav {
   width: 100%;
+  flex: 1;
   margin: 0 auto;
 }
 .menu > button {
@@ -49,6 +53,7 @@ body {
   line-height: 17px;
 
   color: #f7f7f7;
+  margin-bottom: 240px;
 }
 .menu nav ul {
   display: flex;

@@ -1,13 +1,14 @@
 import Home from "./pages-containers/Home/Home";
 import Cobrancas from "./pages-containers/Cobrancas/Cobrancas";
 import ConfiraEmail from "./components/ConfiraEmail/ConfiraEmail";
+import "./index.css";
 function App() {
   return (
     <>
       <div className="App">
-        <Home />
+        {/* <Home /> */}
         {/* <ConfiraEmail /> */}
-        {/* <Cobrancas /> */}
+        <Cobrancas />
       </div>
 
       {/* <main>
