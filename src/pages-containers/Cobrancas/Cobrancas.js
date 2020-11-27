@@ -4,12 +4,15 @@ import Menu from "../../components/Menu/Menu";
 import Perfil from "../../components/Perfil/Perfil";
 import lupaIcon from "../../assets/search.svg";
 import printerIcon from "../../assets/printer.svg";
+import Saldo from "../../components/Saldo";
 const Cobrancas = () => {
   return (
     <div className="cobrancas">
       <Menu />
       <main className="content-cobrancas">
-        <Perfil />
+        <Perfil>
+          <Saldo />
+        </Perfil>
         <div className="wrapper">
           <div className="busca">
             <input type="text" placeholder="Procurar por Nome, E-mail ou CPF" />
