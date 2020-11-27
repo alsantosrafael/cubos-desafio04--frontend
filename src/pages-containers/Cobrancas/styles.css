@@ -83,8 +83,14 @@ td {
   background-color: white;
   margin-bottom: 16px;
 }
-table,
+
 th,
 td {
   padding: 14px;
+
+  border-radius: 0.5rem;
+}
+
+tr {
+  border-radius: 0.5rem;
 }

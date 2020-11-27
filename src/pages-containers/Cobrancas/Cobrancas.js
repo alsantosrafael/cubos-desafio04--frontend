@@ -35,7 +35,7 @@ const Cobrancas = () => {
                   <td className="nome"> Nome e Sobrenome do cliente</td>
                   <td>Aqui vai alguma descrição</td>
                   <td>R$ 00.000,00</td>
-                  <td className="status">[.....] Inadimplente</td>
+                  <td className="status">[.....]</td>
                   <td>12/12/2020</td>
                   <td>
                     <button>
@@ -47,7 +47,7 @@ const Cobrancas = () => {
                   <td className="nome">Nome e Sobrenome do cliente</td>
                   <td>Aqui vai alguma descrição</td>
                   <td>R$ 00.000,00</td>
-                  <td className="status">[.....] Inadimplente</td>
+                  <td className="status">[.....]</td>
                   <td>12/12/2020</td>
                   <td>
                     <button>
@@ -59,7 +59,7 @@ const Cobrancas = () => {
                   <td className="nome">Nome e Sobrenome do cliente</td>
                   <td>Aqui vai alguma descrição</td>
                   <td>R$ 00.000,00</td>
-                  <td className="status">[.....] Inadimplente</td>
+                  <td className="status">[.....]</td>
                   <td>12/12/2020</td>
                   <td>
                     <button>

@@ -34,8 +34,8 @@ body {
   padding: 0 3rem;
 }
 .menu nav {
-  width: 100%;
   flex: 1;
+  width: 100%;
   margin: 0 auto;
 }
 .menu > button {
