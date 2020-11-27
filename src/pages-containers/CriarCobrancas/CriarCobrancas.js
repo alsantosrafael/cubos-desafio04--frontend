@@ -7,11 +7,7 @@ import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 const CriarCobrancas = () => {
-  const { register, handleSubmit, watch } = useForm();
-  const cliente = watch("cliente");
-  const descricao = watch("descricao");
-  const valor = watch("valor");
-  const vencimento = watch("vencimento");
+  const { register, handleSubmit, errors } = useForm();
   const History = useHistory();
 
   //valid vem do useForm, posso usar required em todos os inputs e 
@@ -26,15 +22,17 @@ const CriarCobrancas = () => {
     <div className="criar-cobrancas">
       <Menu />
       <main className="content-criar-cobrancas">
-        <Perfil />
+        <Perfil>
+          <h1>// Criar cobrança</h1>
+        </Perfil>
         <div className="wrapper">
           <form onSubmit={handleSubmit(onSubmit)} className="cadastro-cobranca">
             <label htmlFor="cliente">
               Cliente
               <br />
               {/* Tenho que fazer um map aqui com 
-			  uma requisição para todos os 
-			  clientes que a API fornecer */}
+                  uma requisição para todos os 
+                  clientes que a API fornecer */}
               <select
                 name="cliente"
                 id="cliente"
@@ -51,7 +49,6 @@ const CriarCobrancas = () => {
                 <option value="cliente04">Nome do Cliente 04</option>
               </select>
             </label>
-            <br />
             <label htmlFor="descricao">
               Descricao
               <br />
@@ -89,6 +86,7 @@ const CriarCobrancas = () => {
                 name="vencimento"
                 id="vencimento"
                 ref={register}
+                required
               />
             </label>
             <div className="buttons-container">
@@ -103,7 +101,7 @@ const CriarCobrancas = () => {
               <button
                 type="submit"
                 className="criar-cobranca"
-                disabled={!cliente || !valor || !descricao || !vencimento}
+                disabled={Object.values(errors).length > 0}
               >
                 Criar cobrança!
               </button>
