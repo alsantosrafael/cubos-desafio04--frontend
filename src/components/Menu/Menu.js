@@ -5,6 +5,7 @@ import moneyIcon from "../../assets/money.svg";
 import logoIcon from "../../assets/Logo.svg";
 import homeIcon from "../../assets/home.svg";
 import usersIcon from "../../assets/users.svg";
+import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
@@ -15,22 +16,22 @@ const Menu = () => {
       <nav>
         <ul>
           <li>
-            <a href="/">
+            <Link to="/">
               <img src={homeIcon} alt="home" />
               Home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/">
+            <Link to="/cobrancas">
               <img src={moneyIcon} alt="money" />
               Cobranças
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/">
+            <Link to="/clientes">
               <img src={usersIcon} alt="users" />
               Clientes
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
