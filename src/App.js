@@ -2,6 +2,7 @@ import Home from "./pages-containers/Home/Home";
 import Cobrancas from "./pages-containers/Cobrancas/Cobrancas";
 import CriarCobrancas from "./pages-containers/CriarCobrancas/CriarCobrancas";
 import ConfiraEmail from "./components/ConfiraEmail/ConfiraEmail";
+import Clientes from "./pages-containers/Clientes/Clientes";
 import { BrowserRouter, Switch, Route, useRouteMatch } from "react-router-dom";
 import "./index.css";
 
@@ -33,6 +34,9 @@ function App() {
 
           <Route exact path="/confirmacao-email">
             <ConfiraEmail />
+          </Route>
+          <Route exact path="/clientes">
+            <Clientes />
           </Route>
 
           <Route>

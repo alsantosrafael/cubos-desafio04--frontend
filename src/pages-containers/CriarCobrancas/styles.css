@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 40px 70px;
-  background-color: white;
+  padding: 64px 70px;
+  background-color: #f7f7f7;
 }
 
 .cadastro-cobranca {
@@ -154,4 +154,16 @@ textarea {
   line-height: 15px;
   font-weight: 600;
   margin-left: 0.25rem;
+}
+
+.tabela-nome {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+
+  /* or 143% */
+  letter-spacing: 0.005em;
+
+  /* neutral/gray/dark */
+  color: #4c4c4c;
 }
