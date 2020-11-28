@@ -1,17 +1,16 @@
-.criar-cobrancas {
-  flex: 1;
+.criar-cliente {
   display: flex;
 
   height: 800px;
   background: #f7f7f7;
 }
-.content-criar-cobrancas {
+.content-criar-cliente {
   flex: 1;
   margin-left: 264px;
   width: 100%;
   background: #f7f7f7;
 }
-.wrapper-criar-cobrancas {
+.wrapper-criar-cliente {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -19,12 +18,12 @@
   background-color: white;
 }
 
-.cadastro-cobranca {
+.cadastro-cliente {
   width: 520px;
   margin: 0 auto;
 }
 
-.cadastro-cobranca > label {
+.cadastro-cliente > label {
   color: #374952;
   font-size: 16px;
   line-height: 15px;
@@ -34,22 +33,18 @@
   margin-bottom: 2rem;
 }
 
-.cadastro-cobranca > label > p {
+.cadastro-cliente > label > p {
   font-size: 12px;
   line-height: 15px;
 
-  /* identical to box height */
   letter-spacing: 0.25px;
   font-weight: 400;
   margin-left: 0.25rem;
 
-  /* neutral/gray/mid */
   color: #868686;
 }
 
-.cadastro-cobranca input,
-select,
-textarea {
+.cadastro-cliente input {
   border: 1px solid #374952;
 
   border-radius: 0.5rem;
@@ -58,17 +53,15 @@ textarea {
   background-color: white;
 }
 
-#valor {
-  width: 184px;
+#cpf {
+  width: 240px;
   border: 1px solid #374952;
   border-radius: 0.5rem;
   padding: 12px 14px;
   background-color: white;
-  margin-right: 1rem;
 }
-#vencimento {
-  background: url(../../assets/calendar.svg) no-repeat scroll;
-  width: 312px;
+#phone {
+  width: 240px;
   border: 1px solid #374952;
 
   border-radius: 0.5rem;
@@ -77,44 +70,38 @@ textarea {
   background-color: white;
 }
 
-.buttons-container {
+.buttons-container-clientes {
   display: flex;
   justify-content: flex-end;
 }
-.buttons-container button {
+.buttons-container-clientes button {
   padding: 11px 60px;
   border-radius: 1rem;
   font-weight: 600;
 }
-.buttons-container button:first-child {
+.buttons-container-clientes button:first-child {
   margin-right: 1rem;
 }
 
-.cancelar {
+.cancelar-cliente {
   border: 2px solid #da0175;
   color: #da0175;
   background: #ffffff;
 }
 
-.criar-cobranca {
-  /* background: rgba(218, 1, 117, 0.35); */
+.criar-cliente {
   background: #da0175;
 
   color: #ffffff;
   border-radius: 20px;
 }
 
-.criar-cobranca:disabled {
+.criar-cliente:disabled {
   background: rgba(218, 1, 117, 0.35);
 }
 
-.criar-cobrancas form > * + * {
+.criar-cliente form > * + * {
   margin-top: 2em;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
 }
 
 .content h1 {
@@ -126,34 +113,26 @@ textarea {
   color: #000000;
 }
 
-.content .wrapper-criar-cobrancas {
+.content .wrapper-criar-cliente {
   width: 100%;
   margin: 0 auto;
   border-radius: 16px;
   background-color: white;
 }
 
-.content .wrapper-criar-cobrancas form label > p {
+.content .wrapper-criar-cliente form label > p {
   margin-top: 0.25rem;
 }
 
-.divisor {
+.divisor-clientes {
   display: flex;
   justify-content: space-between;
 }
 
-.divisor label {
+.divisor-clientes label {
   color: #374952;
   font-size: 16px;
   line-height: 15px;
   font-weight: 600;
   margin-left: 0.25rem;
-}
-
-.tabela-nome {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 20px;
-  letter-spacing: 0.005em;
-  color: #4c4c4c;
 }

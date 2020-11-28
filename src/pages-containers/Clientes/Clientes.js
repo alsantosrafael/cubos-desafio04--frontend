@@ -7,6 +7,8 @@ import mailIcon from "../../assets/mail.svg";
 import telIcon from "../../assets/phone.svg";
 import editIcon from "../../assets/edit.svg";
 
+import { Link } from "react-router-dom";
+
 import Saldo from "../../components/Saldo";
 const Clientes = () => {
   return (
@@ -19,7 +21,9 @@ const Clientes = () => {
         <div className="wrapper-clientes">
           <header className="submenu">
             <div>
-              <button className="add-client">Adicionar Cliente</button>
+              <Link to="/adicionar-cliente">
+                <button className="add-client">Adicionar Cliente</button>
+              </Link>
             </div>
             <div className="busca">
               <input
