@@ -13,7 +13,7 @@ const Cobrancas = () => {
         <Perfil>
           <Saldo />
         </Perfil>
-        <div className="wrapper">
+        <div className="wrapper-cobrancas">
           <div className="busca">
             <input type="text" placeholder="Procurar por Nome, E-mail ou CPF" />
             <button>

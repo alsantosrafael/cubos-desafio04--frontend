@@ -20,9 +20,9 @@ const CriarCobrancas = () => {
     <div className="criar-cobrancas">
       <Menu />
       <main className="content-criar-cobrancas">
-        <Perfil>
+        <Perfil id="perfil-criar-cobrancas">
           <h1>// CRIAR COBRANÇA</h1>
-          <div className="wrapper">
+          <div className="wrapper-criar-cobrancas">
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="cadastro-cobranca"

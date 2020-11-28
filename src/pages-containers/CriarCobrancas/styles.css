@@ -10,13 +10,14 @@
   flex: 1;
   margin-left: 264px;
   width: 100%;
+  background: #f7f7f7;
 }
-.wrapper {
+.wrapper-criar-cobrancas {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 64px 70px;
-  background-color: #f7f7f7;
+  padding: 40px 70px;
+  background-color: white;
 }
 
 .cadastro-cobranca {
@@ -112,13 +113,6 @@ textarea {
   margin-top: 2em;
 }
 
-.corpo {
-  background-color: #f7f7f7;
-}
-.profile {
-  background-color: #f7f7f7;
-}
-
 .content {
   display: flex;
   flex-direction: column;
@@ -133,13 +127,14 @@ textarea {
   color: #000000;
 }
 
-.content .wrapper {
+.content .wrapper-criar-cobrancas {
   width: 100%;
   margin: 0 auto;
   border-radius: 16px;
+  background-color: white;
 }
 
-.content .wrapper form label > p {
+.content .wrapper-criar-cobrancas form label > p {
   margin-top: 0.25rem;
 }
 

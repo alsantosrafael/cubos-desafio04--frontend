@@ -11,11 +11,12 @@
   margin-left: 264px;
   width: 100%;
 }
-.wrapper {
+.wrapper-cobrancas {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 64px 70px;
+  background: #f7f7f7;
 }
 .busca {
   display: flex;
@@ -93,4 +94,7 @@ td {
 
 tr {
   border-radius: 0.5rem;
+}
+.corpo {
+  background-color: white;
 }
