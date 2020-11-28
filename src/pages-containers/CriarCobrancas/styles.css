@@ -20,7 +20,7 @@
 }
 
 .cadastro-cobranca {
-  max-width: 512px;
+  width: 520px;
   margin: 0 auto;
 }
 
@@ -30,6 +30,8 @@
   line-height: 15px;
   font-weight: 600;
   margin-left: 0.25rem;
+  display: block;
+  margin-bottom: 2rem;
 }
 
 .cadastro-cobranca > label > p {
@@ -75,10 +77,6 @@ textarea {
   background-color: white;
 }
 
-.cadastro-cobranca > label {
-  margin-top: 2rem;
-}
-
 .buttons-container {
   display: flex;
   justify-content: flex-end;
@@ -110,12 +108,8 @@ textarea {
   background: rgba(218, 1, 117, 0.35);
 }
 
-.criar-cobrancas label {
-  display: block;
-}
-
 .criar-cobrancas form > * + * {
-  margin-top: 1em;
+  margin-top: 2em;
 }
 
 .corpo {
