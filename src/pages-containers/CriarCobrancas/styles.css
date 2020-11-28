@@ -15,7 +15,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 64px 70px;
+  padding: 40px 70px;
   background-color: white;
 }
 
@@ -49,9 +49,28 @@
 select,
 textarea {
   border: 1px solid #374952;
-  box-sizing: border-box;
-  border-radius: 8px;
+
+  border-radius: 0.5rem;
   width: 100%;
+  padding: 12px 14px;
+  background-color: white;
+}
+
+#valor {
+  width: 184px;
+  border: 1px solid #374952;
+  border-radius: 0.5rem;
+  padding: 12px 14px;
+  background-color: white;
+  margin-right: 1rem;
+}
+#vencimento {
+  background: url(../../assets/calendar.svg) no-repeat scroll;
+  width: 312px;
+  border: 1px solid #374952;
+
+  border-radius: 0.5rem;
+
   padding: 12px 14px;
   background-color: white;
 }
@@ -60,13 +79,9 @@ textarea {
   margin-top: 2rem;
 }
 
-#vencimento {
-  background: url(../../assets/calendar.svg) no-repeat scroll;
-  background-color: white;
-}
-
 .buttons-container {
   display: flex;
+  justify-content: flex-end;
 }
 .buttons-container button {
   padding: 11px 60px;
@@ -101,4 +116,48 @@ textarea {
 
 .criar-cobrancas form > * + * {
   margin-top: 1em;
+}
+
+.corpo {
+  background-color: #f7f7f7;
+}
+.profile {
+  background-color: #f7f7f7;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.content h1 {
+  margin-bottom: 1.5rem;
+  font-size: 24px;
+  line-height: 29px;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #000000;
+}
+
+.content .wrapper {
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 16px;
+}
+
+.content .wrapper form label > p {
+  margin-top: 0.25rem;
+}
+
+.divisor {
+  display: flex;
+  justify-content: space-between;
+}
+
+.divisor label {
+  color: #374952;
+  font-size: 16px;
+  line-height: 15px;
+  font-weight: 600;
+  margin-left: 0.25rem;
 }

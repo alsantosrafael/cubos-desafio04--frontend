@@ -19,7 +19,7 @@ function App() {
           {/* <Route exact path="/" render={() => <Home />} /> */}
           {/* <Route exact path="/" component={Home} /> */}
 
-          <Route path="/cobrancas">
+          <Route exact path="/cobrancas">
             <Cobrancas />
           </Route>
 
@@ -27,11 +27,11 @@ function App() {
             <EditarCobrancas />
           </Route> */}
 
-          <Route path="/cobrancas/criar">
+          <Route exact path="/criar-cobrancas">
             <CriarCobrancas />
           </Route>
 
-          <Route path="/confirmacao-email">
+          <Route exact path="/confirmacao-email">
             <ConfiraEmail />
           </Route>
 
@@ -42,7 +42,6 @@ function App() {
         {/* <Home /> */}
         {/* <ConfiraEmail /> */}
         {/* <Cobrancas /> */}
-        <CriarCobrancas />
       </div>
 
       {/* <main>

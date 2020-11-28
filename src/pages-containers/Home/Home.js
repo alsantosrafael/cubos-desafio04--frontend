@@ -14,7 +14,7 @@ const Home = () => {
         <Perfil>
           <Saldo />
         </Perfil>
-        <div className="wrapper">
+        <div className="wrapper-home">
           <div className="filtro">
             <ul>
               <li>Este mês</li>

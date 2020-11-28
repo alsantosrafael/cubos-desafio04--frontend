@@ -35,7 +35,9 @@ const Menu = () => {
           </li>
         </ul>
       </nav>
-      <button>Criar cobrança</button>
+      <button>
+        <Link to="/criar-cobrancas">Criar cobrança</Link>
+      </button>
     </div>
   );
 };

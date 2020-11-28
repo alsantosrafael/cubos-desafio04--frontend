@@ -42,7 +42,7 @@ body {
   cursor: pointer;
   background: #da0175;
   border-radius: 20px;
-  padding: 11px 60px;
+
   align-self: center;
   width: 226px;
   margin: 0 auto;
@@ -55,6 +55,11 @@ body {
   color: #f7f7f7;
   margin-bottom: 240px;
 }
+
+.menu > button > a {
+  display: inline-block;
+  padding: 11px 60px;
+}
 .menu nav ul {
   display: flex;
   flex-direction: column;
@@ -65,7 +70,6 @@ body {
   max-width: 264px;
   width: 100%;
 
-  padding: 1rem 3rem;
   color: white;
   text-transform: uppercase;
 }
@@ -79,7 +83,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
+  padding: 1rem 3rem;
   text-decoration: none;
   color: white;
 }
