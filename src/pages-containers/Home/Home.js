@@ -4,13 +4,16 @@ import Menu from "../../components/Menu/Menu";
 import Perfil from "../../components/Perfil/Perfil";
 import usersIcon from "../../assets/users.svg";
 import cobrancasIcon from "../../assets/money.svg";
+import Saldo from "../../components/Saldo";
 
 const Home = () => {
   return (
     <div className="home">
       <Menu />
       <main className="content-home">
-        <Perfil />
+        <Perfil>
+          <Saldo />
+        </Perfil>
         <div className="wrapper">
           <div className="filtro">
             <ul>
