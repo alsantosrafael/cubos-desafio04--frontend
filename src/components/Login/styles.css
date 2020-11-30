@@ -88,12 +88,17 @@ body {
 
 .login > button {
   align-self: center;
-  background: rgba(218, 1, 117, 0.35);
+  background: #da0175;
   border-radius: 1.5rem;
   margin-bottom: 4.5rem;
-
+  font-weight: 600;
   max-width: 166px;
   padding: 11px 60px;
+  color: #f7f7f7;
+}
+
+.login > button:disabled {
+  background: rgba(218, 1, 117, 0.35);
   color: white;
 }
 

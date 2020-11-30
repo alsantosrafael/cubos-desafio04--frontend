@@ -2,8 +2,12 @@ import React from "react";
 import "./styles.css";
 
 import academyLogo from "../../assets/academy-logo.svg";
+import { fazerRequisicaoComBody } from "../../helpers/requisicao";
+import { useForm } from "react-hook-form";
 
 const RecuperarSenha = () => {
+  const { register, handleSubmit, watch } = useForm();
+  const email = watch("user");
   return (
     <>
       <div className="card-recuperar">
@@ -23,10 +27,13 @@ const RecuperarSenha = () => {
               id="user"
               type="email"
               placeholder="exemplo@gmail.com"
+              ref={register}
             />
           </label>
           <br />
-          <button>Recuperar Senha</button>
+          <button type="submit" disabled={!email}>
+            Recuperar Senha
+          </button>
         </form>
       </div>
     </>

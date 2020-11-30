@@ -82,6 +82,7 @@ body {
   margin-top: 21px;
   width: 150px;
   margin-bottom: 14px;
+  width: 100%;
 }
 .recuperar label > button {
   /*COMO ASSIM BOTAO DENTRO DO INPUT?*/
@@ -99,10 +100,15 @@ body {
 
 .recuperar > button {
   align-self: center;
-  background: rgba(218, 1, 117, 0.35);
+  background: #da0175;
   border-radius: 1.5rem;
   margin-bottom: 4.5rem;
+  font-weight: 600;
 
   padding: 11px 60px;
   color: white;
+}
+
+.recuperar > button:disabled {
+  background: rgba(218, 1, 117, 0.35);
 }

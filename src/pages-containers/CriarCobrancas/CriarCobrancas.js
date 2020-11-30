@@ -6,7 +6,11 @@ import Perfil from "../../components/Perfil/Perfil";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 const CriarCobrancas = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, watch } = useForm();
+  const cliente = watch("cliente");
+  const descricao = watch("descricao");
+  const valor = watch("valor");
+  const vencimento = watch("vencimento");
 
   //valid vem do useForm, posso usar required em todos os inputs e
   //usar o valid do useForm para garantir o disabled do button
@@ -105,7 +109,7 @@ const CriarCobrancas = () => {
                   <button
                     type="submit"
                     className="criar-cobranca"
-                    disabled={Object.values(errors).length > 0}
+                    disabled={!vencimento && !valor && !descricao && !cliente}
                   >
                     Criar cobrança!
                   </button>

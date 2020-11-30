@@ -19,7 +19,7 @@ const LoginPage = () => {
       {currentPath === "/" && (
         <Login mostrarSenha={mostrarSenha} setMostrarSenha={setMostrarSenha} />
       )}
-      {currentPath === "/cadastrar-usuario" && <Cadastro />}
+      {currentPath === "/cadastrar-usuario" && <Cadastro mostrarSenha={mostrarSenha} setMostrarSenha={setMostrarSenha} />}
       {currentPath === "/recuperar-senha" && <RecuperarSenha />}
     </div>
   );

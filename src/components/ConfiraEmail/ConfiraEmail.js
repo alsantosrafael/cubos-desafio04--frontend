@@ -5,6 +5,7 @@ import academyLogo from "../../assets/academy-logo.svg";
 import mailLogo from "../../assets/mail.svg";
 
 const ConfiraEmail = () => {
+	
   return (
     <>
       <div className="card-confirma">

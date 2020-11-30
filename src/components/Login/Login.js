@@ -5,9 +5,14 @@ import academyLogo from "../../assets/academy-logo.svg";
 import senhaOffIcon from "../../assets/senha-off.svg";
 import { useLocation, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+
 const Login = (props) => {
   const { register, handleSubmit, watch } = useForm();
   const { mostrarSenha, setMostrarSenha } = props;
+
+  const user = watch("user");
+  const senha = watch("senha");
+
   return (
     <>
       <div className="card-login">
@@ -50,7 +55,9 @@ const Login = (props) => {
           <br />
 
           <Link to="/recuperar-senha">Esqueci minha senha </Link>
-          <button>Entrar</button>
+          <button type="submit" disabled={!user || !senha}>
+            Entrar
+          </button>
         </form>
       </div>
       <p className="sem-conta">

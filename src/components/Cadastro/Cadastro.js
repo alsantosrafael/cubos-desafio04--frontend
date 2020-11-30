@@ -1,11 +1,19 @@
 import React from "react";
 import "./styles.css";
 
+import { useForm } from "react-hook-form";
 import academyLogo from "../../assets/academy-logo.svg";
 import senhaOffIcon from "../../assets/senha-off.svg";
 import { Link, useLocation } from "react-router-dom";
-const Cadastro = () => {
+
+const Cadastro = (props) => {
   const currentPath = useLocation().pathname;
+  const { mostrarSenha, setMostrarSenha } = props;
+  const { register, handleSubmit, watch } = useForm();
+
+  const nome = watch("nome");
+  const user = watch("user");
+  const senha = watch("senha");
   return (
     <>
       <div className="card-cadastro">
@@ -16,7 +24,13 @@ const Cadastro = () => {
           <label htmlFor="name">
             Nome:
             <br />
-            <input name="name" id="name" type="name" placeholder="Seu nome" />
+            <input
+              name="nome"
+              id="nome"
+              type="text"
+              ref={register}
+              placeholder="Seu nome"
+            />
           </label>
           <label htmlFor="user">
             E-mail:
@@ -26,6 +40,7 @@ const Cadastro = () => {
               id="user"
               type="email"
               placeholder="exemplo@gmail.com"
+              ref={register}
             />
           </label>
           <br />
@@ -35,16 +50,28 @@ const Cadastro = () => {
             <input
               name="senha"
               id="senha"
-              type="password"
               placeholder="Senha"
+              type={mostrarSenha ? "text" : "password"}
+              ref={register}
             />
-            <button>
+            <button
+              type="button"
+              onClick={() => {
+                setMostrarSenha(!mostrarSenha);
+              }}
+            >
               <img src={senhaOffIcon} alt="olho" />
             </button>
             <br />
           </label>
           <br />
-          <button>Criar conta</button>
+          <button
+            type="submit"
+            className="criar-conta"
+            disabled={!nome || !user || !senha}
+          >
+            Criar conta
+          </button>
         </form>
       </div>
       <p>
