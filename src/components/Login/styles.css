@@ -18,6 +18,7 @@ body {
   justify-content: center;
 } */
 .card-login {
+  align-self: center;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -67,7 +68,7 @@ body {
 }
 .login label input {
   margin-top: 21px;
-  width: 150px;
+  width: 100%;
   margin-bottom: 14px;
 }
 .login label > button {
@@ -82,6 +83,7 @@ body {
   font-size: 12px;
   line-height: 15px;
   color: #263238;
+  text-decoration: underline;
 }
 
 .login > button {

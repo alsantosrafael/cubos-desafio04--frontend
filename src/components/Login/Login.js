@@ -3,8 +3,11 @@ import "./styles.css";
 
 import academyLogo from "../../assets/academy-logo.svg";
 import senhaOffIcon from "../../assets/senha-off.svg";
-
-const Login = () => {
+import { useLocation, Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+const Login = (props) => {
+  const { register, handleSubmit, watch } = useForm();
+  const { mostrarSenha, setMostrarSenha } = props;
   return (
     <>
       <div className="card-login">
@@ -20,6 +23,7 @@ const Login = () => {
               id="user"
               type="email"
               placeholder="exemplo@gmail.com"
+              ref={register}
             />
           </label>
           <br />
@@ -29,21 +33,28 @@ const Login = () => {
             <input
               name="senha"
               id="senha"
-              type="password"
+              type={mostrarSenha ? "text" : "password"}
               placeholder="Senha"
+              ref={register}
             />
-            <button>
+            <button
+              type="button"
+              onClick={() => {
+                setMostrarSenha(!mostrarSenha);
+              }}
+            >
               <img src={senhaOffIcon} alt="olho" />
             </button>
             <br />
           </label>
           <br />
-          <a href="/">Esqueci minha senha</a>
+
+          <Link to="/recuperar-senha">Esqueci minha senha </Link>
           <button>Entrar</button>
         </form>
       </div>
       <p className="sem-conta">
-        Não tem uma conta? <a href="/">Cadastre-se!</a>
+        Não tem uma conta? <Link to="/cadastrar-usuario">Cadastre-se!</Link>
       </p>
     </>
   );

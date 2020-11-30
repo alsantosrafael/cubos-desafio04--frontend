@@ -1,6 +1,7 @@
 import React from "react";
 import profileIcon from "../../assets/profile.svg";
 import "./styles.css";
+import Logout from "../Logout/Logout";
 
 const Perfil = (props) => {
   return (

@@ -3,8 +3,9 @@ import "./styles.css";
 
 import academyLogo from "../../assets/academy-logo.svg";
 import senhaOffIcon from "../../assets/senha-off.svg";
-
+import { Link, useLocation } from "react-router-dom";
 const Cadastro = () => {
+  const currentPath = useLocation().pathname;
   return (
     <>
       <div className="card-cadastro">
@@ -47,7 +48,7 @@ const Cadastro = () => {
         </form>
       </div>
       <p>
-        Já possui uma conta? <a href="/">Acesse agora!</a>
+        Já possui uma conta? <Link to="/">Acesse agora!</Link>
       </p>
     </>
   );
