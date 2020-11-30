@@ -13,13 +13,21 @@ import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 const LoginPage = () => {
   const currentPath = useLocation().pathname;
   const [mostrarSenha, setMostrarSenha] = React.useState(false);
+//   const [usuario, setUsuario] = React.useState(null);
+//   const [password, setPassword] = React.useState(null);
   const { token, setToken } = React.useContext(ContextToken);
+
   return (
     <div classname="inicio">
       {currentPath === "/" && (
         <Login mostrarSenha={mostrarSenha} setMostrarSenha={setMostrarSenha} />
       )}
-      {currentPath === "/cadastrar-usuario" && <Cadastro mostrarSenha={mostrarSenha} setMostrarSenha={setMostrarSenha} />}
+      {currentPath === "/cadastrar-usuario" && (
+        <Cadastro
+          mostrarSenha={mostrarSenha}
+          setMostrarSenha={setMostrarSenha}
+        />
+      )}
       {currentPath === "/recuperar-senha" && <RecuperarSenha />}
     </div>
   );

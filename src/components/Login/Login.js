@@ -5,11 +5,14 @@ import academyLogo from "../../assets/academy-logo.svg";
 import senhaOffIcon from "../../assets/senha-off.svg";
 import { useLocation, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { ContextToken } from "../../App";
+import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 
 const Login = (props) => {
   const { register, handleSubmit, watch } = useForm();
   const { mostrarSenha, setMostrarSenha } = props;
-
+  const { token, setToken } = React.useContext(ContextToken);
+  const [logado, setLogado] = React.useState(false);
   const user = watch("user");
   const senha = watch("senha");
 
@@ -55,7 +58,32 @@ const Login = (props) => {
           <br />
 
           <Link to="/recuperar-senha">Esqueci minha senha </Link>
-          <button type="submit" disabled={!user || !senha}>
+          <button
+            type="submit"
+            disabled={!user || !senha}
+            onClick={async (event) => {
+              event.preventDefault();
+              if (logado) {
+                setLogado(false);
+              } else {
+                try {
+                  const respostaLogin = await fazerRequisicaoComBody(
+                    `${process.env.REACT_APP_API_URL}/auth`,
+                    "POST",
+                    { email: register.user, password: register.senha }
+                  ).then((resposta) => resposta.json());
+                  if (respostaLogin.token) {
+                    setToken(respostaLogin.token);
+                    console.log(respostaLogin);
+                  } else {
+                    alert(respostaLogin.mensagem);
+                  }
+                } catch (err) {
+                  console.log(err.message);
+                }
+              }
+            }}
+          >
             Entrar
           </button>
         </form>
