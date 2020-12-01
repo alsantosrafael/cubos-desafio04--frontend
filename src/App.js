@@ -6,6 +6,7 @@ import CriarCobrancas from "./pages-containers/CriarCobrancas/CriarCobrancas";
 import ConfiraEmail from "./components/ConfiraEmail/ConfiraEmail";
 import Clientes from "./pages-containers/Clientes/Clientes";
 import CriarCliente from "./pages-containers/CriarCliente/CriarCliente";
+import Cadastro from "./components/Cadastro/Cadastro";
 import { BrowserRouter, Switch, Route, useRouteMatch } from "react-router-dom";
 import "./index.css";
 
@@ -15,18 +16,23 @@ function App() {
   // const { params } = useRouteMatch();
   // const { id } = params;
   const [token, setToken] = React.useState(null);
+  const [mostrarSenha, setMostrarSenha] = React.useState(false);
   return (
     <BrowserRouter>
       <div className="App">
         <Switch>
-          <ContextToken.Provider value={(token, setToken)}>
+          <ContextToken.Provider
+            value={{ token, setToken, mostrarSenha, setMostrarSenha }}
+          >
             <Route exact path={["/", "/cadastrar-usuario", "/recuperar-senha"]}>
-              {/* <Home /> */}
-              <LoginPage />
+              {token ? <Home /> : <LoginPage />}{" "}
+              {/*Fazer isso com todas as rotas para impedir acesso se não logado */}
             </Route>
             {/* <Route exact path="/" render={() => <Home />} /> */}
             {/* <Route exact path="/" component={Home} /> */}
-
+            <Route exact path="/home">
+              <Home />
+            </Route>
             <Route exact path="/cobrancas">
               <Cobrancas />
             </Route>
@@ -55,7 +61,7 @@ function App() {
               <CriarCliente />
             </Route> */}
 
-            {/* <Route>
+            {/* <Route path="/">
               <h1>404</h1>
             </Route> */}
           </ContextToken.Provider>

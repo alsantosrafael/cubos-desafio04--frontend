@@ -1,4 +1,5 @@
 function fazerRequisicaoComBody(url, metodo, conteudo, token = null) {
+  console.log(conteudo);
   return fetch(url, {
     method: metodo,
     headers: {

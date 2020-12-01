@@ -3,18 +3,40 @@ import "./styles.css";
 
 import academyLogo from "../../assets/academy-logo.svg";
 import senhaOffIcon from "../../assets/senha-off.svg";
-import { useLocation, Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { useLocation, Link, useHistory } from "react-router-dom";
+import { useForm, handleSubmit } from "react-hook-form";
 import { ContextToken } from "../../App";
 import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 
 const Login = (props) => {
+  const history = useHistory();
   const { register, handleSubmit, watch } = useForm();
   const { mostrarSenha, setMostrarSenha } = props;
   const { token, setToken } = React.useContext(ContextToken);
-  const [logado, setLogado] = React.useState(false);
+  //   const [logado, setLogado] = React.useState(false);
+
   const user = watch("user");
   const senha = watch("senha");
+
+  const onSubmit = async (data) => {
+    try {
+      const respostaLogin = await fazerRequisicaoComBody(
+        `https://cubos-desafio-4.herokuapp.com/auth`,
+        "POST",
+        { email: data.user, senha: data.senha }
+      ).then((resposta) => resposta.json());
+
+      if (respostaLogin.dados.token) {
+        setToken(respostaLogin.dados.token);
+        history.push("/home");
+        console.log(respostaLogin);
+      } else {
+        alert(respostaLogin);
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   return (
     <>
@@ -22,7 +44,7 @@ const Login = (props) => {
         <div className="logo-container-login">
           <img src={academyLogo} alt="logo-academy" />
         </div>
-        <form className="login" method="post">
+        <form className="login" method="post" onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="user">
             E-mail:
             <br />
@@ -58,32 +80,7 @@ const Login = (props) => {
           <br />
 
           <Link to="/recuperar-senha">Esqueci minha senha </Link>
-          <button
-            type="submit"
-            disabled={!user || !senha}
-            onClick={async (event) => {
-              event.preventDefault();
-              if (logado) {
-                setLogado(false);
-              } else {
-                try {
-                  const respostaLogin = await fazerRequisicaoComBody(
-                    `${process.env.REACT_APP_API_URL}/auth`,
-                    "POST",
-                    { email: register.user, password: register.senha }
-                  ).then((resposta) => resposta.json());
-                  if (respostaLogin.token) {
-                    setToken(respostaLogin.token);
-                    console.log(respostaLogin);
-                  } else {
-                    alert(respostaLogin.mensagem);
-                  }
-                } catch (err) {
-                  console.log(err.message);
-                }
-              }
-            }}
-          >
+          <button type="submit" disabled={!user || !senha}>
             Entrar
           </button>
         </form>

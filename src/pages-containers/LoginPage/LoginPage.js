@@ -12,13 +12,11 @@ import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 
 const LoginPage = () => {
   const currentPath = useLocation().pathname;
-  const [mostrarSenha, setMostrarSenha] = React.useState(false);
-//   const [usuario, setUsuario] = React.useState(null);
-//   const [password, setPassword] = React.useState(null);
-  const { token, setToken } = React.useContext(ContextToken);
 
+  const { mostrarSenha, setMostrarSenha } = React.useContext(ContextToken);
+  /* Refazer rotas lá no App.js*/
   return (
-    <div classname="inicio">
+    <div className="inicio">
       {currentPath === "/" && (
         <Login mostrarSenha={mostrarSenha} setMostrarSenha={setMostrarSenha} />
       )}

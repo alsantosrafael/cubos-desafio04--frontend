@@ -109,7 +109,7 @@ const CriarCobrancas = () => {
                   <button
                     type="submit"
                     className="criar-cobranca"
-                    disabled={!vencimento && !valor && !descricao && !cliente}
+                    disabled={!vencimento || !valor || !descricao || !cliente}
                   >
                     Criar cobrança!
                   </button>
