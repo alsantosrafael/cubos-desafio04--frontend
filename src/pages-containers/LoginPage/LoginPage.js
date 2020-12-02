@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, Switch, Route } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 import { ContextToken } from "../../App";
@@ -14,19 +14,26 @@ const LoginPage = () => {
   const currentPath = useLocation().pathname;
 
   const { mostrarSenha, setMostrarSenha } = React.useContext(ContextToken);
-  /* Refazer rotas lá no App.js*/
+
   return (
     <div className="inicio">
-      {currentPath === "/" && (
-        <Login mostrarSenha={mostrarSenha} setMostrarSenha={setMostrarSenha} />
-      )}
-      {currentPath === "/cadastrar-usuario" && (
-        <Cadastro
-          mostrarSenha={mostrarSenha}
-          setMostrarSenha={setMostrarSenha}
-        />
-      )}
-      {currentPath === "/recuperar-senha" && <RecuperarSenha />}
+      <Switch>
+        <Route exact path="/">
+          <Login
+            mostrarSenha={mostrarSenha}
+            setMostrarSenha={setMostrarSenha}
+          />
+        </Route>
+        <Route path="/cadastrar-usuario">
+          <Cadastro
+            mostrarSenha={mostrarSenha}
+            setMostrarSenha={setMostrarSenha}
+          />
+        </Route>
+        <Route exact path="/recuperar-senha">
+          <RecuperarSenha />
+        </Route>
+      </Switch>
     </div>
   );
 };

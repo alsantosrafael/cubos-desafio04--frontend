@@ -36,6 +36,11 @@
   margin-left: 3.5rem;
 }
 
+.filtro ul li button {
+  background-color: #f7f7f7;
+  width: 100%;
+}
+
 .cards {
   margin-top: 41px;
   display: flex;

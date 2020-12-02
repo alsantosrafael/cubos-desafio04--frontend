@@ -17,9 +17,15 @@ const Home = () => {
         <div className="wrapper-home">
           <div className="filtro">
             <ul>
-              <li>Este mês</li>
-              <li>Este ano</li>
-              <li>Desde o início</li>
+              <li>
+                <button>Este mês</button>
+              </li>
+              <li>
+                <button>Este ano</button>
+              </li>
+              <li>
+                <button>Desde o início</button>
+              </li>
             </ul>
           </div>
           <section className="cards">
