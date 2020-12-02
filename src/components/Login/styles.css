@@ -56,6 +56,7 @@ body {
   font-weight: 600;
   font-size: 16px;
   line-height: 15px;
+  position: relative;
 }
 
 .login label:first-child {
@@ -70,9 +71,12 @@ body {
   margin-top: 21px;
   width: 100%;
   margin-bottom: 14px;
+  outline: none;
 }
 .login label > button {
-  /*COMO ASSIM BOTAO DENTRO DO INPUT?*/
+  position: absolute;
+  right: 15px;
+  bottom: 8px;
   background-color: white;
 }
 
