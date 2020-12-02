@@ -1,13 +1,12 @@
 .criar-cliente {
   display: flex;
-
-  background: #f7f7f7;
+  background: #F7F7F7;
 }
 .content-criar-cliente {
   flex: 1;
   margin-left: 264px;
   width: 100%;
-  background: #f7f7f7;
+  background: #F7F7F7;
 }
 .wrapper-criar-cliente {
   display: flex;
@@ -90,7 +89,6 @@
 
 .criar-cliente {
   background: #da0175;
-
   color: #ffffff;
   border-radius: 20px;
 }
