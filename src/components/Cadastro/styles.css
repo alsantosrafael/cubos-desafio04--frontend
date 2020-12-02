@@ -55,6 +55,7 @@ body {
   font-weight: 600;
   font-size: 16px;
   line-height: 15px;
+  position: relative;
 }
 
 .cadastro label:first-child {
@@ -72,10 +73,14 @@ body {
   margin-top: 21px;
   margin-bottom: 14px;
   width: 100%;
+  outline: none;
 }
 .cadastro label > button {
   /*COMO ASSIM BOTAO DENTRO DO INPUT?*/
   margin: 0 auto;
+  position: absolute;
+  right: 15px;
+  bottom: 7px;
   background-color: white;
 }
 
