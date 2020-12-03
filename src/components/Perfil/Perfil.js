@@ -8,7 +8,7 @@ const Perfil = (props) => {
   const [mostraLogout, setMostraLogout] = React.useState(false);
   return (
     <div className="corpo">
-      <div className="profile">
+      <div className={`profile ${props.backgroundWhite && 'profile-background-white'}` } >
         <span onClick={() => setMostraLogout(!mostraLogout)}>
           <img src={profileIcon} alt="Menu" />
         </span>

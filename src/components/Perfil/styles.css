@@ -12,6 +12,10 @@
   padding: 2rem 3.5rem 0 4.5rem;
 }
 
+.profile-background-white {
+	background-color: #ffffff;
+}
+
 .profile > span {
   align-self: flex-end;
   margin-bottom: 5px;
