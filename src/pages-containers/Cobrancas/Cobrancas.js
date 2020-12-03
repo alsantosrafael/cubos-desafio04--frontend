@@ -5,18 +5,54 @@ import Perfil from "../../components/Perfil/Perfil";
 import lupaIcon from "../../assets/search.svg";
 import printerIcon from "../../assets/printer.svg";
 import Saldo from "../../components/Saldo";
+import { fazerRequisicaoComBody } from "../../helpers/requisicao";
+import { ContextToken } from "../../App";
+import { useForm } from "react-hook-form";
 const Cobrancas = () => {
+  const [cobrancas, setCobrancas] = React.useState(null);
+  const { token, setToken } = React.useContext(ContextToken);
+  const { register, handleSubmit, watch } = useForm();
+  const busca = watch("busca");
+
+  React.useEffect(async () => {
+    const resposta = await fazerRequisicaoComBody(
+      `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=10&offset=20`,
+      "GET",
+      undefined,
+      token
+    ).then((resposta) => {
+      return resposta.json();
+    });
+    console.log(resposta);
+    setCobrancas(resposta.dados);
+  }, []);
   return (
     <div className="cobrancas">
       <Menu />
       <main className="content-cobrancas">
         <Perfil backgroundWhite>
           <Saldo />
-        </Perfil >
+        </Perfil>
         <div className="wrapper-cobrancas">
           <div className="busca">
-            <input type="text" placeholder="Procurar por Nome, E-mail ou CPF" />
-            <button>
+            <input
+              type="text"
+              name="busca"
+              id="busca"
+              ref={register}
+              placeholder="Procurar por Nome, E-mail ou CPF"
+            />
+            <button
+              onClick={() => {
+                const resposta = fazerRequisicaoComBody(
+                  `https://cubos-desafio-4.herokuapp.com/clientes?busca=${register.busca}&clientesPorPagina=10&offset=20`,
+                  "GET",
+                  undefined,
+                  token
+                ).then((resposta) => resposta.json());
+                setCobrancas(resposta.dados);
+              }}
+            >
               <img src={lupaIcon} alt="buscar" />
               Buscar
             </button>
@@ -34,6 +70,20 @@ const Cobrancas = () => {
                 </tr>
               </thead>
               <tbody>
+                {/* {!cobrancas ? <tr><div>Carregando...</div></tr> : (cobrancas.map((cobranca) => {                 <tr>
+				 <tr key={cobranca.id}> 
+				  <td className="nome"> {cobranca.idDoCliente}</td>
+                  <td>{cobranca.descricao}</td>
+                  <td>R$ {cobranca.valor</td>
+                  <td className="status">{cobranca.status}</td>
+                  <td>{cobranca.vencimento}</td>
+                  <td>
+                    <button>
+                      <img src={printerIcon} alt="Icone editar cliente" />
+                    </button>
+                  </td>
+                </tr>)
+				})})} */}
                 <tr>
                   <td className="nome"> Nome e Sobrenome do cliente</td>
                   <td>Aqui vai alguma descrição</td>

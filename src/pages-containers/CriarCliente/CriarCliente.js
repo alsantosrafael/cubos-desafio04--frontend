@@ -6,15 +6,20 @@ import Perfil from "../../components/Perfil/Perfil";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 const CriarCliente = () => {
-  const { register, handleSubmit, errors } = useForm();
+  const { register, handleSubmit, watch } = useForm();
 
   //valid vem do useForm, posso usar required em todos os inputs e
   //usar o valid do useForm para garantir o disabled do button
   const onSubmit = (data) => {
-    //Devo fazer uma requisição aqui
+    // TODO Devo fazer uma requisição aqui
+    // TODO rever botao de submit
     //dentro enviando os dados do formulario para BACK!
     console.log(JSON.stringify(data));
   };
+  const cliente = watch("cliente");
+  const email = watch("email");
+  const cpf = watch("cpf");
+  const phone = watch("phone");
 
   return (
     <div className="criar-cliente">
@@ -85,7 +90,7 @@ const CriarCliente = () => {
                 <button
                   type="submit"
                   className="criar-cliente"
-                  disabled={Object.values(errors).length > 0}
+                  disabled={!cliente || !email || !cpf || !phone}
                 >
                   Adicionar cliente!
                 </button>
