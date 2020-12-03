@@ -15,7 +15,7 @@ const Clientes = () => {
     <div className="clientes">
       <Menu />
       <main className="content-clientes">
-        <Perfil>
+        <Perfil backgroundWhite>
           <Saldo />
         </Perfil>
         <div className="wrapper-clientes">
