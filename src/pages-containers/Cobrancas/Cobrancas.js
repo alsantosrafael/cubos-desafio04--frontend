@@ -10,9 +10,9 @@ const Cobrancas = () => {
     <div className="cobrancas">
       <Menu />
       <main className="content-cobrancas">
-        <Perfil>
+        <Perfil backgroundWhite>
           <Saldo />
-        </Perfil>
+        </Perfil >
         <div className="wrapper-cobrancas">
           <div className="busca">
             <input type="text" placeholder="Procurar por Nome, E-mail ou CPF" />
