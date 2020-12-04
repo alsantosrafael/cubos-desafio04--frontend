@@ -11,6 +11,7 @@ import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "./index.css";
 import RecuperarSenha from "./components/RecuperarSenha/RecuperarSenha";
+import EditarCliente from "./pages-containers/EditarCliente/EditarCliente";
 
 export const ContextToken = React.createContext();
 
@@ -18,12 +19,20 @@ function App() {
   // const { params } = useRouteMatch();
   // const { id } = params;
   const [token, setToken] = React.useState(null);
+  const [idEditado, setIdEditado] = React.useState(null);
   const [mostrarSenha, setMostrarSenha] = React.useState(false);
   return (
     <div className="App">
       <Switch>
         <ContextToken.Provider
-          value={{ token, setToken, mostrarSenha, setMostrarSenha }}
+          value={{
+            token,
+            setToken,
+            mostrarSenha,
+            setMostrarSenha,
+            idEditado,
+            setIdEditado,
+          }}
         >
           <PrivateRoute to="/home" component={Home} redirect="/" />
           <Route exact path="/cobrancas">
@@ -44,6 +53,11 @@ function App() {
 
           <Route exact path="/adicionar-cliente">
             {token ? <CriarCliente /> : <Redirect to="/" />}
+          </Route>
+
+          <Route exact path="/editar-cliente">
+            {/* {token ? <EditarCliente /> : <Redirect to="/" />} */}
+            <EditarCliente />
           </Route>
 
           <Route exact path={["/", "/cadastrar-usuario", "/recuperar-senha"]}>

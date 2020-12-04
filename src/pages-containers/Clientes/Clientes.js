@@ -7,7 +7,7 @@ import mailIcon from "../../assets/mail.svg";
 import telIcon from "../../assets/phone.svg";
 import editIcon from "../../assets/edit.svg";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 import { ContextToken } from "../../App";
 import { useForm } from "react-hook-form";
@@ -17,9 +17,9 @@ import { Pagination } from "antd";
 import "antd/dist/antd.css";
 const Clientes = () => {
   const [clientes, setClientes] = React.useState(null);
-  const { token } = React.useContext(ContextToken);
+  const { token, idEditado, setIdEditado } = React.useContext(ContextToken);
   const { register, handleSubmit, watch } = useForm();
-  const [idEditado, setIdEditado] = React.useState(null);
+  const history = useHistory();
   const [pagAtual, setPagAtual] = React.useState(1);
   const [qtdPags, setQtdPags] = React.useState(0);
   const busca = watch("busca");
@@ -29,7 +29,7 @@ const Clientes = () => {
   const handleBusca = async (data) => {
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/clientes?busca=${data.busca}&clientesPorPagina=1000&offset=0`,
+        `https://cubos-desafio-4.herokuapp.com/clientes?busca=${data.busca}&clientesPorPagina=10&offset=0`,
         "GET",
         undefined,
         token
@@ -152,7 +152,12 @@ const Clientes = () => {
                           {cliente.inadimplente ? "INADIMPLENTE" : "EM DIA"}
                         </td>
                         <td>
-                          <button>
+                          <button
+                            onClick={() => {
+                              setIdEditado(cliente.id);
+                              history.push("/editar-cliente");
+                            }}
+                          >
                             <img src={editIcon} alt="Icone editar cliente" />
                           </button>
                         </td>

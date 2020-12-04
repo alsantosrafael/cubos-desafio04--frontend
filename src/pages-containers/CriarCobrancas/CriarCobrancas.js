@@ -32,7 +32,8 @@ const CriarCobrancas = () => {
         token
       );
       if (req) {
-        alert(`Cobranca ${req.dados.id} criado com sucesso!`);
+        console.log(req);
+        alert(`Cobranca criado com sucesso!`);
         history.push("/cobrancas");
       }
     } catch (err) {
@@ -42,7 +43,7 @@ const CriarCobrancas = () => {
 
   React.useEffect(() => {
     fazerRequisicaoComBody(
-      `https://cubos-desafio-4.herokuapp.com/clientes?clientesPorPagina=1000&offset=0`,
+      `https://cubos-desafio-4.herokuapp.com/clientes?clientesPorPagina=10&offset=0`,
       "GET",
       undefined,
       token
