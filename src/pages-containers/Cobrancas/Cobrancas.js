@@ -15,6 +15,7 @@ const Cobrancas = () => {
   const [cobrancas, setCobrancas] = React.useState(null);
   const [pagAtual, setPagAtual] = React.useState(1);
   const [qtdPags, setQtdPags] = React.useState(0);
+  //   const [offset, setOffset] = React.useState(0);
   const { token, setToken } = React.useContext(ContextToken);
   const { register, handleSubmit, watch } = useForm();
   const busca = watch("busca");
@@ -22,24 +23,26 @@ const Cobrancas = () => {
   const handleBusca = async (data) => {
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=${data.busca}&cobrancasPorPagina=100&offset=0`,
+        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=${data.busca}&cobrancasPorPagina=10&offset=0`,
         "GET",
         undefined,
         token
       ).then((resposta) => {
+        console.log(resposta.dados);
         return resposta.json();
       });
-      if (novaReq.dados.clientes) setCobrancas(novaReq.dados.clientes);
+      if (novaReq) setCobrancas(novaReq.dados.cobrancas);
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  const handleChangePage = async (data) => {
+  async function onChange(page) {
+    const pagina = page - 1;
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/cobrancas&cobrancasPorPagina=10&offset=${
-          (pagAtual - 1) * 10
+        `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=10&offset=${
+          pagina * 10
         }`,
         "GET",
         undefined,
@@ -47,15 +50,19 @@ const Cobrancas = () => {
       ).then((resposta) => {
         return resposta.json();
       });
-      if (novaReq.dados) setCobrancas(novaReq.dados);
+      if (novaReq.dados) {
+        setCobrancas(novaReq.dados.cobrancas);
+        setQtdPags(novaReq.dados.totalDePaginas);
+      }
     } catch (err) {
       console.log(err.message);
+      alert(err.message);
     }
-  };
+  }
 
   React.useEffect(() => {
     fazerRequisicaoComBody(
-      `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=100&offset=0`,
+      `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=10&offset=0`,
       "GET",
       undefined,
       token
@@ -138,9 +145,10 @@ const Cobrancas = () => {
           </section>
           <div className="container-pagination">
             <Pagination
-              defaultCurrent={pagAtual}
-              total={qtdPags ? qtdPags : 10}
-              onChange={handleChangePage}
+              size="small"
+              total={qtdPags * 10}
+              pageSize={10}
+              onChange={onChange}
             />
           </div>
         </div>

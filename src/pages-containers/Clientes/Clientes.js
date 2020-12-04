@@ -36,32 +36,39 @@ const Clientes = () => {
       ).then((resposta) => {
         return resposta.json();
       });
-      if (novaReq.dados.clientes) setClientes(novaReq.dados.clientes);
+      if (novaReq.dados) {
+        setClientes(novaReq.dados.clientes);
+        setQtdPags(novaReq.dados.totalDePaginas);
+      }
     } catch (err) {
       console.log(err.message);
     }
   };
 
-  const handleChangePage = async () => {
-    try {
-      const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/clientes&clientesPorPagina=10&offset=${
-          (pagAtual - 1) * 10
-        }`,
-        "GET",
-        undefined,
-        token
-      ).then((resposta) => {
+  async function onChange(page) {
+    const pagina = page - 1;
+
+    await fazerRequisicaoComBody(
+      `https://cubos-desafio-4.herokuapp.com/clientes?clientesPorPagina=10&offset=${
+        pagina * 10
+      }`,
+      "GET",
+      undefined,
+      token
+    )
+      .then((resposta) => {
         return resposta.json();
+      })
+      .then((resposta) => {
+        console.log(resposta);
+        setClientes(resposta.clientes);
+        setQtdPags(resposta.totalDePaginas);
       });
-      if (novaReq.dados) setClientes(novaReq.dados);
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
+  }
+
   React.useEffect(() => {
     fazerRequisicaoComBody(
-      `https://cubos-desafio-4.herokuapp.com/clientes?clientesPorPagina=1000&offset=0`,
+      `https://cubos-desafio-4.herokuapp.com/clientes?clientesPorPagina=10&offset=0`,
       "GET",
       undefined,
       token
@@ -170,9 +177,10 @@ const Clientes = () => {
           </section>
           <div className="container-pagination">
             <Pagination
-              defaultCurrent={pagAtual}
-              total={qtdPags ? qtdPags : 10}
-              onChange={handleChangePage}
+              size="small"
+              total={qtdPags * 10}
+              pageSize={10}
+              onChange={onChange}
             />
           </div>
         </div>

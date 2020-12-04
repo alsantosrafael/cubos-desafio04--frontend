@@ -56,8 +56,7 @@ function App() {
           </Route>
 
           <Route exact path="/editar-cliente">
-            {/* {token ? <EditarCliente /> : <Redirect to="/" />} */}
-            <EditarCliente />
+            {token ? <EditarCliente /> : <Redirect to="/" />}
           </Route>
 
           <Route exact path={["/", "/cadastrar-usuario", "/recuperar-senha"]}>
