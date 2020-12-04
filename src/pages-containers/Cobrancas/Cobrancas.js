@@ -8,23 +8,66 @@ import Saldo from "../../components/Saldo";
 import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 import { ContextToken } from "../../App";
 import { useForm } from "react-hook-form";
+import { Pagination } from "antd";
+import "antd/dist/antd.css";
 const Cobrancas = () => {
   const [cobrancas, setCobrancas] = React.useState(null);
+  const [pagAtual, setPagAtual] = React.useState(1);
+  const [qtdPags, setQtdPags] = React.useState(0);
   const { token, setToken } = React.useContext(ContextToken);
   const { register, handleSubmit, watch } = useForm();
   const busca = watch("busca");
 
-  React.useEffect(async () => {
-    const resposta = await fazerRequisicaoComBody(
-      `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=10&offset=20`,
+  const handleBusca = async () => {
+    try {
+      const novaReq = await fazerRequisicaoComBody(
+        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=${register.busca}&clientesPorPagina=10&offset=0`,
+        "GET",
+        undefined,
+        token
+      ).then((resposta) => {
+        return resposta.json();
+      });
+      if (novaReq.dados.clientes) setCobrancas(novaReq.dados.clientes);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const handleChangePage = async () => {
+    try {
+      const novaReq = await fazerRequisicaoComBody(
+        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=textodabusca&clientesPorPagina=10&offset=${
+          (pagAtual - 1) * 10
+        }`,
+        "GET",
+        undefined,
+        token
+      ).then((resposta) => {
+        return resposta.json();
+      });
+      if (novaReq.dados) setCobrancas(novaReq.dados);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  React.useEffect(() => {
+    fazerRequisicaoComBody(
+      `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=10&offset=0`,
       "GET",
       undefined,
       token
-    ).then((resposta) => {
-      return resposta.json();
-    });
-    console.log(resposta);
-    setCobrancas(resposta.dados);
+    )
+      .then((resposta) => {
+        return resposta.json();
+      })
+      .then((resposta) => {
+        console.log(resposta.dados);
+        setCobrancas(resposta.dados.cobrancas);
+        setPagAtual(resposta.dados.paginaAtual);
+        setQtdPags(resposta.dados.totalDePaginas);
+      });
   }, []);
   return (
     <div className="cobrancas">
@@ -70,77 +113,36 @@ const Cobrancas = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {!cobrancas ? <tr><div>Carregando...</div></tr> : (cobrancas.map((cobranca) => {                 <tr>
-				 <tr key={cobranca.id}> 
-				  <td className="nome"> {cobranca.idDoCliente}</td>
-                  <td>{cobranca.descricao}</td>
-                  <td>R$ {cobranca.valor</td>
-                  <td className="status">{cobranca.status}</td>
-                  <td>{cobranca.vencimento}</td>
-                  <td>
-                    <button>
-                      <img src={printerIcon} alt="Icone editar cliente" />
-                    </button>
-                  </td>
-                </tr>)
-				})})} */}
-                <tr>
-                  <td className="nome"> Nome e Sobrenome do cliente</td>
-                  <td>Aqui vai alguma descrição</td>
-                  <td>R$ 00.000,00</td>
-                  <td className="status">[.....]</td>
-                  <td>12/12/2020</td>
-                  <td>
-                    <button>
-                      <img src={printerIcon} alt="Icone editar cliente" />
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="nome">Nome e Sobrenome do cliente</td>
-                  <td>Aqui vai alguma descrição</td>
-                  <td>R$ 00.000,00</td>
-                  <td className="status">[.....]</td>
-                  <td>12/12/2020</td>
-                  <td>
-                    <button>
-                      <img src={printerIcon} alt="Icone editar cliente" />
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="nome">Nome e Sobrenome do cliente</td>
-                  <td>Aqui vai alguma descrição</td>
-                  <td>R$ 00.000,00</td>
-                  <td className="status">[.....]</td>
-                  <td>12/12/2020</td>
-                  <td>
-                    <button>
-                      <img src={printerIcon} alt="Icone editar cliente" />
-                    </button>
-                  </td>
-                </tr>
+                {!cobrancas ? (
+                  <tr>
+                    <div>Carregando...</div>
+                  </tr>
+                ) : (
+                  cobrancas.map((cobranca) => {
+                    <tr key={cobranca.id}>
+                      <td className="nome"> {cobranca.idDoCliente}</td>
+                      <td>{cobranca.descricao}</td>
+                      <td>R$ {cobranca.valor}</td>
+                      <td className="status">{cobranca.status}</td>
+                      <td>{cobranca.vencimento}</td>
+                      <td>
+                        <button>
+                          <img src={printerIcon} alt="Icone editar cliente" />
+                        </button>
+                      </td>
+                    </tr>;
+                  })
+                )}
               </tbody>
             </table>
           </section>
-          {/* <div className="container-buttons">
-            <button className="back-page">
-              <img src={BackIcon} alt="Página anterior" />
-            </button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>10</button>
-            <button className="next-page">
-              <img src={NextIcon} alt="Próxima página" />
-            </button>
-          </div> */}
+          <div className="container-pagination">
+            <Pagination
+              defaultCurrent={pagAtual}
+              total={qtdPags ? qtdPags : 10}
+              onChange={handleChangePage}
+            />
+          </div>
         </div>
       </main>
     </div>

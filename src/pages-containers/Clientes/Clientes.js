@@ -12,22 +12,66 @@ import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 import { ContextToken } from "../../App";
 import { useForm } from "react-hook-form";
 import Saldo from "../../components/Saldo";
+
+import { Pagination } from "antd";
+import "antd/dist/antd.css";
 const Clientes = () => {
   const [clientes, setClientes] = React.useState(null);
   const { token, setToken } = React.useContext(ContextToken);
   const { register, handleSubmit, watch } = useForm();
+  const [pagAtual, setPagAtual] = React.useState(1);
+  const [qtdPags, setQtdPags] = React.useState(0);
   const busca = watch("busca");
-  React.useEffect(async () => {
-    const resposta = await fazerRequisicaoComBody(
-      `https://cubos-desafio-4.herokuapp.com/clientes?busca=textodabusca&clientesPorPagina=10&offset=20`,
+  /*Se der tempo, desmembrar handleBusca e handlePageChange 
+  em um useEffect 
+  com dependencia dos estados */
+  const handleBusca = async () => {
+    try {
+      const novaReq = await fazerRequisicaoComBody(
+        `https://cubos-desafio-4.herokuapp.com/clientes?busca=${register.busca}&clientesPorPagina=10&offset=0`,
+        "GET",
+        undefined,
+        token
+      ).then((resposta) => {
+        return resposta.json();
+      });
+      if (novaReq.dados.clientes) setClientes(novaReq.dados.clientes);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+
+  const handleChangePage = async () => {
+    try {
+      const novaReq = await fazerRequisicaoComBody(
+        `https://cubos-desafio-4.herokuapp.com/clientes?busca=textodabusca&clientesPorPagina=10&offset=${
+          (pagAtual - 1) * 10
+        }`,
+        "GET",
+        undefined,
+        token
+      ).then((resposta) => {
+        return resposta.json();
+      });
+      if (novaReq.dados) setClientes(novaReq.dados);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
+  React.useEffect(() => {
+    fazerRequisicaoComBody(
+      `https://cubos-desafio-4.herokuapp.com/clientes?busca=textodabusca&clientesPorPagina=10&offset=0`,
       "GET",
       undefined,
       token
-    ).then((resposta) => {
-      return resposta.json();
-    });
-    console.log(resposta);
-    setClientes(resposta.dados);
+    )
+      .then((resposta) => resposta.json())
+      .then((resposta) => {
+        console.log(resposta.dados);
+        setClientes(resposta.dados.clientes);
+        setPagAtual(resposta.dados.paginaAtual);
+        setQtdPags(resposta.dados.totalDePaginas);
+      });
   }, []);
   return (
     <div className="clientes">
@@ -51,23 +95,12 @@ const Clientes = () => {
                 placeholder="Procurar por Nome, E-mail ou CPF"
                 ref={register}
               />
-              <button
-                onClick={() => {
-                  const resposta = fazerRequisicaoComBody(
-                    `https://cubos-desafio-4.herokuapp.com/clientes?busca=${register.busca}&clientesPorPagina=10&offset=20`,
-                    "GET",
-                    undefined,
-                    token
-                  ).then((resposta) => resposta.json());
-                  setClientes(resposta.dados);
-                }}
-              >
+              <button onClick={handleBusca}>
                 <img src={lupaIcon} alt="buscar" />
                 Buscar
               </button>
             </div>
           </header>
-
           <section className="lista-clientes">
             <table>
               <thead>
@@ -80,122 +113,50 @@ const Clientes = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* {!clientes ? <tr><div>Carregando...</div></tr> : (clientes.map((cliente) => {
-						  (<tr key="cliente.email">
-							<td>
-		  
-							  <div className="tabela-nome">
-								{cliente.nome}
-							  </div>
-							  <div>
-								<img src={mailIcon} alt="Ícone email" />
-								{cliente.email}
-							  </div>
-							  <div>
-								<img src={telIcon} alt="Ícone telefone" />
-								+55(31) 92422-319
-							  </div>
-							</td>
-							<td>{cliente.cobrancasFeitas}</td>
-							<td>{cliente.cobrancasRecebidas}</td>
-							<td className="status">{cliente.estaInadimplente}</td>
-							<td>
-							  <button>
-								<img src={editIcon} alt="Icone editar cliente" />
-							  </button>
-							</td>
-						  </tr>)
-					  })})*/}
-                <tr>
-                  <td>
-                    <div className="tabela-nome">
-                      Nome e Sobrenome do cliente
-                    </div>
-                    <div>
-                      <img src={mailIcon} alt="Ícone email" />
-                      exemplo@gmail.com
-                    </div>
-                    <div>
-                      <img src={telIcon} alt="Ícone telefone" />
-                      +55(31) 92422-319
-                    </div>
-                  </td>
-                  <td>R$ 00.000,00</td>
-                  <td>R$ 00.000,00</td>
-                  <td className="status">Em dia</td>
-                  <td>
-                    <button>
-                      <img src={editIcon} alt="Icone editar cliente" />
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="tabela-nome">
-                      Nome e Sobrenome do cliente
-                    </div>
-                    <div>
-                      <img src={mailIcon} alt="Ícone email" />
-                      exemplo@gmail.com
-                    </div>
-                    <div>
-                      <img src={telIcon} alt="Ícone telefone" />
-                      +55(31) 92422-319
-                    </div>
-                  </td>
-                  <td>R$ 00.000,00</td>
-                  <td>R$ 00.000,00</td>
-                  <td className="status">Inadimplente</td>
-                  <td>
-                    <button>
-                      <img src={editIcon} alt="Icone editar cliente" />
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="tabela-nome">
-                      Nome e Sobrenome do cliente
-                    </div>
-                    <div>
-                      <img src={mailIcon} alt="Ícone email" />
-                      exemplo@gmail.com
-                    </div>
-                    <div>
-                      <img src={telIcon} alt="Ícone telefone" />
-                      +55(31) 92422-319
-                    </div>
-                  </td>
-                  <td>R$ 00.000,00</td>
-                  <td>R$ 00.000,00</td>
-                  <td className="status">Pendente</td>
-                  <td>
-                    <button>
-                      <img src={editIcon} alt="Icone editar cliente" />
-                    </button>
-                  </td>
-                </tr>
+                {/* {clientes.length === 0 && (
+                  <tr>
+                    <div>Não possui clientes...</div>
+                  </tr>
+                )} */}
+                {!clientes ? (
+                  <tr>
+                    <div>Carregando...</div>
+                  </tr>
+                ) : (
+                  clientes.map((cliente) => {
+                    <tr key="cliente.email">
+                      <td>
+                        <div className="tabela-nome">{cliente.nome}</div>
+                        <div>
+                          <img src={mailIcon} alt="Ícone email" />
+                          {cliente.email}
+                        </div>
+                        {/* <div>
+                          <img src={telIcon} alt="Ícone telefone" />
+                          {cliente.tel}
+                        </div> */}
+                      </td>
+                      <td>{cliente.cobrancasFeitas}</td>
+                      <td>{cliente.cobrancasRecebidas}</td>
+                      <td className="status">{cliente.estaInadimplente}</td>
+                      <td>
+                        <button>
+                          <img src={editIcon} alt="Icone editar cliente" />
+                        </button>
+                      </td>
+                    </tr>;
+                  })
+                )}
               </tbody>
             </table>
           </section>
-          {/* <div className="container-buttons">
-            <button className="back-page">
-              <img src={BackIcon} alt="Página anterior" />
-            </button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>10</button>
-            <button className="next-page">
-              <img src={NextIcon} alt="Próxima página" />
-            </button>
-          </div> */}
+          <div className="container-pagination">
+            <Pagination
+              defaultCurrent={pagAtual}
+              total={qtdPags ? qtdPags : 10}
+              onChange={handleChangePage}
+            />
+          </div>
         </div>
       </main>
     </div>
