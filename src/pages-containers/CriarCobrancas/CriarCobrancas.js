@@ -9,6 +9,7 @@ import { Link, useHistory } from "react-router-dom";
 const CriarCobrancas = () => {
   const { register, handleSubmit, watch } = useForm();
   const { token } = React.useContext(ContextToken);
+  const [clientes, setClientes] = React.useState(null);
   const cliente = watch("cliente");
   const descricao = watch("descricao");
   const valor = watch("valor");
@@ -23,28 +24,42 @@ const CriarCobrancas = () => {
         `https://cubos-desafio-4.herokuapp.com/cobrancas`,
         "POST",
         {
-          nome: data.cliente,
-          descricao: data.cpf,
-          email: data.email,
-          tel: data.phone,
+          id_cliente: data.cliente,
+          descricao: data.descricao,
+          valor: data.valor,
+          vencimento: data.vencimento,
         },
         token
       );
-      if (req.dados) {
+      if (req) {
         alert(`Cobranca ${req.dados.id} criado com sucesso!`);
-        history.push("/clientes");
+        history.push("/cobrancas");
       }
     } catch (err) {
       console.log(err.message);
     }
   };
 
+  React.useEffect(() => {
+    fazerRequisicaoComBody(
+      `https://cubos-desafio-4.herokuapp.com/clientes?clientesPorPagina=1000&offset=0`,
+      "GET",
+      undefined,
+      token
+    )
+      .then((resposta) => resposta.json())
+      .then((resposta) => {
+        console.log(resposta);
+        setClientes(resposta.dados.clientes);
+      });
+  }, []);
+
   return (
     <div className="criar-cobrancas">
       <Menu />
       <main className="content-criar-cobrancas">
         <Perfil id="perfil-criar-cobrancas">
-          <h1>// CRIAR COBRANÇA</h1>
+          <h1>//CRIAR COBRANÇA</h1>
           <div className="wrapper-criar-cobrancas">
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -53,23 +68,21 @@ const CriarCobrancas = () => {
               <label htmlFor="cliente">
                 Cliente
                 <br />
-                {/* Tenho que fazer um map aqui com 
-                  uma requisição para todos os 
-                  clientes que a API fornecer */}
-                <select
-                  name="cliente"
-                  id="cliente"
-                  required
-                  ref={register}
-                  form="cliente"
-                >
-                  <option disabled selected value="">
-                    Selecione um cliente...
-                  </option>
-                  <option value="cliente01">Nome do Cliente 01</option>
-                  <option value="cliente02">Nome do Cliente 02</option>
-                  <option value="cliente03">Nome do Cliente 03</option>
-                  <option value="cliente04">Nome do Cliente 04</option>
+                <select name="cliente" id="cliente" required ref={register}>
+                  {clientes ? (
+                    clientes.map((cliente) => {
+                      return (
+                        <option key={cliente.id} value={cliente.id}>
+                          {cliente.nome}
+                        </option>
+                      );
+                    })
+                  ) : (
+                    <option disabled selected value="">
+                      Selecione um cliente...
+                    </option>
+                  )}
+                  ))
                 </select>
               </label>
               <label htmlFor="descricao">
@@ -116,23 +129,21 @@ const CriarCobrancas = () => {
               </div>
 
               <div className="buttons-container">
-                <Link to="/">
-                  <button
-                    className="cancelar"
-                    // onClick={() => {
-                    //   History.push("/cobrancas");
-                    // }}
-                  >
-                    Cancelar
-                  </button>
-                  <button
-                    type="submit"
-                    className="criar-cobranca"
-                    disabled={!vencimento || !valor || !descricao || !cliente}
-                  >
-                    Criar cobrança!
-                  </button>
-                </Link>
+                <button
+                  className="cancelar"
+                  onClick={() => {
+                    history.push("/cobrancas");
+                  }}
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  className="criar-cobranca"
+                  disabled={!vencimento || !valor || !descricao || !cliente}
+                >
+                  Criar cobrança!
+                </button>
               </div>
             </form>
           </div>

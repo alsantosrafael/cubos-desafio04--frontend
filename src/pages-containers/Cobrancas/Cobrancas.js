@@ -19,10 +19,10 @@ const Cobrancas = () => {
   const { register, handleSubmit, watch } = useForm();
   const busca = watch("busca");
 
-  const handleBusca = async () => {
+  const handleBusca = async (data) => {
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=${register.busca}&clientesPorPagina=10&offset=0`,
+        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=${data.busca}&cobrancasPorPagina=100&offset=0`,
         "GET",
         undefined,
         token
@@ -35,10 +35,10 @@ const Cobrancas = () => {
     }
   };
 
-  const handleChangePage = async () => {
+  const handleChangePage = async (data) => {
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=${busca}&clientesPorPagina=10&offset=${
+        `https://cubos-desafio-4.herokuapp.com/cobrancas&cobrancasPorPagina=10&offset=${
           (pagAtual - 1) * 10
         }`,
         "GET",
@@ -55,7 +55,7 @@ const Cobrancas = () => {
 
   React.useEffect(() => {
     fazerRequisicaoComBody(
-      `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=10&offset=0`,
+      `https://cubos-desafio-4.herokuapp.com/cobrancas?cobrancasPorPagina=100&offset=0`,
       "GET",
       undefined,
       token
@@ -78,7 +78,7 @@ const Cobrancas = () => {
           <Saldo />
         </Perfil>
         <div className="wrapper-cobrancas">
-          <div className="busca">
+          <form onSubmit={handleSubmit(handleBusca)} className="busca">
             <input
               type="text"
               name="busca"
@@ -86,21 +86,11 @@ const Cobrancas = () => {
               ref={register}
               placeholder="Procurar por Nome, E-mail ou CPF"
             />
-            <button
-              onClick={() => {
-                const resposta = fazerRequisicaoComBody(
-                  `https://cubos-desafio-4.herokuapp.com/clientes?busca=${register.busca}&clientesPorPagina=10&offset=20`,
-                  "GET",
-                  undefined,
-                  token
-                ).then((resposta) => resposta.json());
-                setCobrancas(resposta.dados);
-              }}
-            >
+            <button type="submit">
               <img src={lupaIcon} alt="buscar" />
               Buscar
             </button>
-          </div>
+          </form>
           <section className="lista-cobrancas">
             <table>
               <thead>

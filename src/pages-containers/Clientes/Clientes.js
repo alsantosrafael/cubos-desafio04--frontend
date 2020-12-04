@@ -26,10 +26,10 @@ const Clientes = () => {
   /*Se der tempo, desmembrar handleBusca e handlePageChange 
   em um useEffect 
   com dependencia dos estados */
-  const handleBusca = async () => {
+  const handleBusca = async (data) => {
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/clientes?busca=${register.busca}&clientesPorPagina=10&offset=0`,
+        `https://cubos-desafio-4.herokuapp.com/clientes?busca=${data.busca}&clientesPorPagina=1000&offset=0`,
         "GET",
         undefined,
         token
@@ -45,7 +45,7 @@ const Clientes = () => {
   const handleChangePage = async () => {
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/clientes?busca=textodabusca&clientesPorPagina=10&offset=${
+        `https://cubos-desafio-4.herokuapp.com/clientes&clientesPorPagina=10&offset=${
           (pagAtual - 1) * 10
         }`,
         "GET",
@@ -68,7 +68,7 @@ const Clientes = () => {
     )
       .then((resposta) => resposta.json())
       .then((resposta) => {
-        console.log(resposta.dados);
+        console.log(resposta.dados.clientes[0].inadimplente);
         setClientes(resposta.dados.clientes);
         setPagAtual(resposta.dados.paginaAtual);
         setQtdPags(resposta.dados.totalDePaginas);
@@ -88,7 +88,7 @@ const Clientes = () => {
                 <button className="add-client">Adicionar Cliente</button>
               </Link>
             </div>
-            <div className="busca">
+            <form onSubmit={handleSubmit(handleBusca)} className="busca">
               <input
                 type="text"
                 name="busca"
@@ -96,11 +96,11 @@ const Clientes = () => {
                 placeholder="Procurar por Nome, E-mail ou CPF"
                 ref={register}
               />
-              <button onClick={handleBusca}>
+              <button type="submit">
                 <img src={lupaIcon} alt="buscar" />
                 Buscar
               </button>
-            </div>
+            </form>
           </header>
           <section className="lista-clientes">
             <table>
@@ -125,6 +125,7 @@ const Clientes = () => {
                   </tr>
                 ) : (
                   clientes.map((cliente) => {
+                    console.log(cliente);
                     return (
                       <tr key={cliente.id}>
                         <td>
@@ -138,9 +139,18 @@ const Clientes = () => {
                             {cliente.tel}
                           </div> */}
                         </td>
-                        <td>{cliente.cobrancasFeitas}</td>
-                        <td>{cliente.cobrancasRecebidas}</td>
-                        <td className="status">{cliente.estaInadimplente}</td>
+                        <td>{cliente.cobrancas_total}</td>
+                        <td>{cliente.cobrancas_pago}</td>
+                        <td
+                          className="status"
+                          style={
+                            cliente.inadimplente
+                              ? { color: "red", fontWeight: "600" }
+                              : { color: "green", fontWeight: "600" }
+                          }
+                        >
+                          {cliente.inadimplente ? "INADIMPLENTE" : "EM DIA"}
+                        </td>
                         <td>
                           <button>
                             <img src={editIcon} alt="Icone editar cliente" />
