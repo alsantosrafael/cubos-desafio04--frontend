@@ -10,6 +10,7 @@ import { ContextToken } from "../../App";
 import { useForm } from "react-hook-form";
 import { Pagination } from "antd";
 import "antd/dist/antd.css";
+
 const Cobrancas = () => {
   const [cobrancas, setCobrancas] = React.useState(null);
   const [pagAtual, setPagAtual] = React.useState(1);
@@ -37,7 +38,7 @@ const Cobrancas = () => {
   const handleChangePage = async () => {
     try {
       const novaReq = await fazerRequisicaoComBody(
-        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=textodabusca&clientesPorPagina=10&offset=${
+        `https://cubos-desafio-4.herokuapp.com/cobrancas?busca=${busca}&clientesPorPagina=10&offset=${
           (pagAtual - 1) * 10
         }`,
         "GET",
@@ -119,18 +120,27 @@ const Cobrancas = () => {
                   </tr>
                 ) : (
                   cobrancas.map((cobranca) => {
-                    <tr key={cobranca.id}>
-                      <td className="nome"> {cobranca.idDoCliente}</td>
-                      <td>{cobranca.descricao}</td>
-                      <td>R$ {cobranca.valor}</td>
-                      <td className="status">{cobranca.status}</td>
-                      <td>{cobranca.vencimento}</td>
-                      <td>
-                        <button>
-                          <img src={printerIcon} alt="Icone editar cliente" />
-                        </button>
-                      </td>
-                    </tr>;
+                    /*iddocliente */
+                    return (
+                      <tr key={cobranca.id}>
+                        <td className="nome"> {cobranca.iddocliente}</td>
+                        <td>{cobranca.descricao}</td>
+                        <td>R$ {cobranca.valor}</td>
+                        <td className="status">{cobranca.status}</td>
+                        <td>
+                          {cobranca.vencimento
+                            .split("T")[0]
+                            .split("-")
+                            .reverse()
+                            .join("/")}
+                        </td>
+                        <td>
+                          <button>
+                            <img src={printerIcon} alt="Icone editar cliente" />
+                          </button>
+                        </td>
+                      </tr>
+                    );
                   })
                 )}
               </tbody>

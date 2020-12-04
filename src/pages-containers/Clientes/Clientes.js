@@ -17,8 +17,9 @@ import { Pagination } from "antd";
 import "antd/dist/antd.css";
 const Clientes = () => {
   const [clientes, setClientes] = React.useState(null);
-  const { token, setToken } = React.useContext(ContextToken);
+  const { token } = React.useContext(ContextToken);
   const { register, handleSubmit, watch } = useForm();
+  const [idEditado, setIdEditado] = React.useState(null);
   const [pagAtual, setPagAtual] = React.useState(1);
   const [qtdPags, setQtdPags] = React.useState(0);
   const busca = watch("busca");
@@ -60,7 +61,7 @@ const Clientes = () => {
   };
   React.useEffect(() => {
     fazerRequisicaoComBody(
-      `https://cubos-desafio-4.herokuapp.com/clientes?busca=textodabusca&clientesPorPagina=10&offset=0`,
+      `https://cubos-desafio-4.herokuapp.com/clientes?clientesPorPagina=1000&offset=0`,
       "GET",
       undefined,
       token
@@ -124,27 +125,29 @@ const Clientes = () => {
                   </tr>
                 ) : (
                   clientes.map((cliente) => {
-                    <tr key="cliente.email">
-                      <td>
-                        <div className="tabela-nome">{cliente.nome}</div>
-                        <div>
-                          <img src={mailIcon} alt="Ícone email" />
-                          {cliente.email}
-                        </div>
-                        {/* <div>
-                          <img src={telIcon} alt="Ícone telefone" />
-                          {cliente.tel}
-                        </div> */}
-                      </td>
-                      <td>{cliente.cobrancasFeitas}</td>
-                      <td>{cliente.cobrancasRecebidas}</td>
-                      <td className="status">{cliente.estaInadimplente}</td>
-                      <td>
-                        <button>
-                          <img src={editIcon} alt="Icone editar cliente" />
-                        </button>
-                      </td>
-                    </tr>;
+                    return (
+                      <tr key={cliente.id}>
+                        <td>
+                          <div className="tabela-nome">{cliente.nome}</div>
+                          <div>
+                            <img src={mailIcon} alt="Ícone email" />
+                            {cliente.email}
+                          </div>
+                          {/* <div>
+                            <img src={telIcon} alt="Ícone telefone" />
+                            {cliente.tel}
+                          </div> */}
+                        </td>
+                        <td>{cliente.cobrancasFeitas}</td>
+                        <td>{cliente.cobrancasRecebidas}</td>
+                        <td className="status">{cliente.estaInadimplente}</td>
+                        <td>
+                          <button>
+                            <img src={editIcon} alt="Icone editar cliente" />
+                          </button>
+                        </td>
+                      </tr>
+                    );
                   })
                 )}
               </tbody>

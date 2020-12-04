@@ -2,22 +2,41 @@ import "./styles.css";
 import React from "react";
 import Menu from "../../components/Menu/Menu";
 import Perfil from "../../components/Perfil/Perfil";
-
+import { ContextToken } from "../../App";
+import { fazerRequisicaoComBody } from "../../helpers/requisicao";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 const CriarCobrancas = () => {
   const { register, handleSubmit, watch } = useForm();
+  const { token } = React.useContext(ContextToken);
   const cliente = watch("cliente");
   const descricao = watch("descricao");
   const valor = watch("valor");
   const vencimento = watch("vencimento");
-
+  const history = useHistory();
   //valid vem do useForm, posso usar required em todos os inputs e
   //usar o valid do useForm para garantir o disabled do button
-  const onSubmit = (data) => {
-    //Devo fazer uma requisição aqui
-    //dentro enviando os dados do formulario para BACK!
-    console.log(JSON.stringify(data));
+  const onSubmit = async (data) => {
+    console.log(data);
+    try {
+      const req = await fazerRequisicaoComBody(
+        `https://cubos-desafio-4.herokuapp.com/cobrancas`,
+        "POST",
+        {
+          nome: data.cliente,
+          descricao: data.cpf,
+          email: data.email,
+          tel: data.phone,
+        },
+        token
+      );
+      if (req.dados) {
+        alert(`Cobranca ${req.dados.id} criado com sucesso!`);
+        history.push("/clientes");
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
 
   return (

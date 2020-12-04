@@ -4,17 +4,35 @@ import Menu from "../../components/Menu/Menu";
 import Perfil from "../../components/Perfil/Perfil";
 
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { fazerRequisicaoComBody } from "../../helpers/requisicao";
+import { ContextToken } from "../../App";
 const CriarCliente = () => {
+  const history = useHistory();
   const { register, handleSubmit, watch } = useForm();
-
+  const { token } = React.useContext(ContextToken);
   //valid vem do useForm, posso usar required em todos os inputs e
   //usar o valid do useForm para garantir o disabled do button
-  const onSubmit = (data) => {
-    // TODO Devo fazer uma requisição aqui
-    // TODO rever botao de submit
-    //dentro enviando os dados do formulario para BACK!
-    console.log(JSON.stringify(data));
+  const onSubmit = async (data) => {
+    try {
+      const req = await fazerRequisicaoComBody(
+        `https://cubos-desafio-4.herokuapp.com/clientes`,
+        "POST",
+        {
+          nome: data.cliente,
+          cpf: data.cpf,
+          email: data.email,
+          tel: data.phone,
+        },
+        token
+      );
+      if (req.dados) {
+        alert(`Cliente ${req.dados.id} criado com sucesso!`);
+        history.push("/clientes");
+      }
+    } catch (err) {
+      console.log(err.message);
+    }
   };
   const cliente = watch("cliente");
   const email = watch("email");
@@ -43,7 +61,13 @@ const CriarCliente = () => {
               <label htmlFor="email">
                 E-mail
                 <br />
-                <input type="email" id="email" required ref={register} />
+                <input
+                  name="email"
+                  type="email"
+                  id="email"
+                  required
+                  ref={register}
+                />
               </label>
               <div className="divisor-clientes">
                 <label className="container-cpf" htmlFor="cpf">
@@ -77,16 +101,14 @@ const CriarCliente = () => {
               </div>
 
               <div className="buttons-container-clientes">
-                <Link to="/">
-                  <button
-                    className="cancelar-cliente"
-                    // onClick={() => {
-                    //   History.push("/cobrancas");
-                    // }}
-                  >
-                    Cancelar
-                  </button>
-                </Link>
+                <button
+                  className="cancelar-cliente"
+                  onClick={() => {
+                    history.push("/clientes");
+                  }}
+                >
+                  Cancelar
+                </button>
                 <button
                   type="submit"
                   className="criar-cliente"
